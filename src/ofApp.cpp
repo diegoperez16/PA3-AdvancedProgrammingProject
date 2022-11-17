@@ -26,7 +26,7 @@ void ofApp::draw() {
     case '2': {
         // Tree
         float length = 0.31 * ofGetHeight();
-        drawMode2(ofGetWidth() / 2, ofGetHeight() - 20, 10, length, 1.5 * PI);
+        drawMode2(ofGetWidth() / 2, ofGetHeight() - 20, level, length, 1.5 * PI);
     } break;
     case '3': {
         // Sierpinski Triangle
@@ -70,10 +70,12 @@ void ofApp::drawMode2(float x, float y, int n, float length, float rad) {
     float x2 = x + length * cos(rad);
     float y2 = y + length * sin(rad);
 
+    
+
     ofDrawLine(x, y, x2, y2);
 
     drawMode2(x2, y2, n - 1, 0.7 * length, rad + 0.2 * PI);
-    drawMode2(x2, y2, n - 1, 0.7 * length, rad - 0.2 * PI);
+    drawMode2(x2, y2, n - 1,  0.7 * length, rad - 0.2 * PI);
 }
 
 void ofApp::drawMode3(float x, float y, float size, int n) {
@@ -100,7 +102,7 @@ void ofApp::drawMode4(float x, float y, float n) {
     float py = ofMap(y, 0, 9.9983, ofGetHeight(), 0);
 
     ofFill();
-    ofSetColor(ofColor::green);
+    ofSetColor(ofColor::red);
     ofDrawCircle(px, py, 0.6);
     ofSetColor(ofColor::white);
 
@@ -125,7 +127,14 @@ void ofApp::keyPressed(int key) {
         ofSetFullscreen(fullscreen++ % 2 == 0);
     else if (key == OF_KEY_ESC)
         ofSetFullscreen(false);
+    if(key== OF_KEY_UP){
+        level++;
+    }
+    if(key== OF_KEY_DOWN){
+        level--;
+    }
 }
+
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key) {

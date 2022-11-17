@@ -6,6 +6,7 @@
 
 class ofApp : public ofBaseApp {
   private:
+    int level = 0;
     char mode = '1';
     float angle = 0;
     unsigned int fullscreen;
