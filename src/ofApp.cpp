@@ -9,36 +9,48 @@ void ofApp::setup() {
 
 //--------------------------------------------------------------
 void ofApp::update() {
-}
+
+}   
 
 //--------------------------------------------------------------
 void ofApp::draw() {
     ofBackgroundGradient(ofColor(65), ofColor(0), OF_GRADIENT_BAR);
+    ofDrawBitmapString("LEVEL OF FRACTALIZATION: " + ofToString(level), 50, 100);
 
     ofNoFill();
     switch (mode) {
     case '1': {
         // Circle
+        fern =  false;
+        circle = true;
         float r = 0.31 * ofGetHeight();
         angle += 0.01;
         drawMode1(ofGetWidth() / 2, ofGetHeight() / 2, r, level);
     } break;
     case '2': {
         // Tree
+        fern =  false;
+        circle = false;
         float length = 0.31 * ofGetHeight();
         drawMode2(ofGetWidth() / 2, ofGetHeight() - 20, level, length, 1.5 * PI);
     } break;
     case '3': {
         // Sierpinski Triangle
+        circle = false;
+        fern =  false;
         float size = 0.88 * ofGetHeight();
         drawMode3((ofGetWidth() - size) / 2, ofGetHeight() / 2 - 0.4 * size, size, level);
     } break;
     case '4':
         // Barnsley Fern
+        circle = false;
+        fern =  true;
         drawMode4(0, 0, level * 1000);
         break;
     case '5':
-        // Koch SnowFlake
+        // Koch 
+        fern =  false;
+        circle = false;
         SnowFlake().draw();
         break;
     }
@@ -121,17 +133,35 @@ void ofApp::drawMode4(float x, float y, float n) {
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key) {
 
-    if (key >= '1' && key <= '5')
-        mode = key;
+    if (key >= '1' && key <= '5'){
+        level = 0;
+        mode = key;}
     else if (key == OF_KEY_F11)
         ofSetFullscreen(fullscreen++ % 2 == 0);
     else if (key == OF_KEY_ESC)
         ofSetFullscreen(false);
     if(key== OF_KEY_UP){
-        level++;
+        if(circle == true)
+        {
+            if(level < 7){
+                level++;
+            }
+        }
+        else if(fern == true){
+            if(level < 30){
+                level++;
+            }
+        }
+        else if(circle == false && level < 10){
+
+            level++;}
+        else if(fern == false && level < 10){
+            level++;}
     }
     if(key== OF_KEY_DOWN){
-        level--;
+        if(level > 0){
+            level--;
+            }
     }
 }
 
