@@ -21,7 +21,7 @@ void ofApp::draw() {
         // Circle
         float r = 0.31 * ofGetHeight();
         angle += 0.01;
-        drawMode1(ofGetWidth() / 2, ofGetHeight() / 2, r, 3);
+        drawMode1(ofGetWidth() / 2, ofGetHeight() / 2, r, level);
     } break;
     case '2': {
         // Tree
@@ -31,11 +31,11 @@ void ofApp::draw() {
     case '3': {
         // Sierpinski Triangle
         float size = 0.88 * ofGetHeight();
-        drawMode3((ofGetWidth() - size) / 2, ofGetHeight() / 2 - 0.4 * size, size, 7);
+        drawMode3((ofGetWidth() - size) / 2, ofGetHeight() / 2 - 0.4 * size, size, level);
     } break;
     case '4':
         // Barnsley Fern
-        drawMode4(0, 0, 10 * 1000);
+        drawMode4(0, 0, level * 1000);
         break;
     case '5':
         // Koch SnowFlake
