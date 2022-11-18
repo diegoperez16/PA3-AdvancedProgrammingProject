@@ -164,7 +164,7 @@ void ofApp::keyPressed(int key) {
         ofSetFullscreen(fullscreen++ % 2 == 0);
     else if (key == OF_KEY_ESC)
         ofSetFullscreen(false);
-    if(key== OF_KEY_UP){
+    if(key== OF_KEY_RIGHT){
         if(mode == '5'){
             if(snow->getSnowL() < 8){
                 
@@ -186,7 +186,7 @@ void ofApp::keyPressed(int key) {
 
             level++;}
     }
-    if(key== OF_KEY_DOWN){
+    if(key== OF_KEY_LEFT){
         if(level > 0){
             level--;
             }
