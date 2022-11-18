@@ -14,7 +14,12 @@ void ofApp::update() {
 
 //--------------------------------------------------------------
 void ofApp::draw() {
-    ofBackgroundGradient(ofColor(65), ofColor(0), OF_GRADIENT_BAR);
+
+    if(mode == '4' ){
+        ofBackgroundGradient(ofColor(ofColor::red), ofColor(0), OF_GRADIENT_BAR);
+    }
+    ofBackgroundGradient(ofColor(ofColor::black), ofColor(ofColor::darkSlateBlue), OF_GRADIENT_LINEAR);
+
     ofDrawBitmapString("MODE: " + ofToString(mode), 50, 100);
     if(mode < '5'){
     ofDrawBitmapString("LEVEL OF FRACTALIZATION: " + ofToString(level), 50, 150);}
@@ -131,7 +136,7 @@ void ofApp::drawMode4(float x, float y, float n) {
     float py = ofMap(y, 0, 9.9983, ofGetHeight(), 0);
 
     ofFill();
-    ofSetColor(ofColor::red);
+    ofSetColor(ofColor::lawnGreen);
     ofDrawCircle(px, py, 0.6);
     ofSetColor(ofColor::white);
 
@@ -178,7 +183,7 @@ void ofApp::keyPressed(int key) {
             }
         }
         else if(fern == true){
-            if(level < 30){
+            if(level < 50){
                 level++;
             }
         }
