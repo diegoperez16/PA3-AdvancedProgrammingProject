@@ -1,11 +1,12 @@
 #pragma once
 
 #include <cmath>
-
+#include "SnowFlake.hpp"
 #include "ofMain.h"
 
 class ofApp : public ofBaseApp {
   private:
+    SnowFlake* snow;
     bool circle = false;
     bool fern = false;
     int level = 0;
@@ -17,7 +18,7 @@ class ofApp : public ofBaseApp {
     void setup();
     void update();
     void draw();
-    
+    int getLevel();
     void keyPressed(int key);
     void keyReleased(int key);
     void mouseMoved(int x, int y);
@@ -34,4 +35,5 @@ class ofApp : public ofBaseApp {
     void drawMode2(float x, float y, int n, float length, float rad);
     void drawMode3(float x, float y, float size, int n);
     void drawMode4(float x, float y, float n);
+    
 };

@@ -1,10 +1,10 @@
 #include "ofApp.hpp"
-#include "SnowFlake.hpp"
 
 //--------------------------------------------------------------
 void ofApp::setup() {
     ofSetEscapeQuitsApp(false);
     fullscreen = 0;
+    snow = new SnowFlake();
 }
 
 //--------------------------------------------------------------
@@ -15,7 +15,12 @@ void ofApp::update() {
 //--------------------------------------------------------------
 void ofApp::draw() {
     ofBackgroundGradient(ofColor(65), ofColor(0), OF_GRADIENT_BAR);
-    ofDrawBitmapString("LEVEL OF FRACTALIZATION: " + ofToString(level), 50, 100);
+    ofDrawBitmapString("MODE: " + ofToString(mode), 50, 100);
+    if(mode < '5'){
+    ofDrawBitmapString("LEVEL OF FRACTALIZATION: " + ofToString(level), 50, 150);}
+    else if(mode == '5'){
+    ofDrawBitmapString("LEVEL OF FRACTALIZATION SNOWFLAKE: " + ofToString(snow->getSnowL()), 50, 150);}
+    
 
     ofNoFill();
     switch (mode) {
@@ -51,7 +56,19 @@ void ofApp::draw() {
         // Koch 
         fern =  false;
         circle = false;
-        SnowFlake().draw();
+        
+        // SnowFlake().draw();
+
+        float size = 0.74 * ofGetHeight();
+
+        glm::vec2 p1 = {(ofGetWidth() - size) / 2, (ofGetHeight() - size * sin(PI / 3)) / 2 + 0.15 * size};
+        glm::vec2 p2 = {(ofGetWidth() + size) / 2, (ofGetHeight() - size * sin(PI / 3)) / 2 + 0.15 * size};
+        glm::vec2 p3 = {ofGetWidth() / 2, (ofGetHeight() + size * sin(PI / 3)) / 2 + 0.15 * size};
+
+
+        snow->drawICE(snow->getSnowL(), new SnowFlake(p1, p2));   
+        snow->drawICE(snow->getSnowL(), new SnowFlake(p2, p3));
+        snow->drawICE(snow->getSnowL(), new SnowFlake(p3, p1));
         break;
     }
 }
@@ -131,19 +148,32 @@ void ofApp::drawMode4(float x, float y, float n) {
         drawMode4(-0.15 * x + 0.28 * y, 0.26 * x + 0.24 * y + 0.44, n - 1);
 }
 //--------------------------------------------------------------
+
+int ofApp::getLevel(){
+    return level;
+}
+
+//--------------------------------------------------------------
 void ofApp::keyPressed(int key) {
 
     if (key >= '1' && key <= '5'){
         level = 0;
         mode = key;}
+    
     else if (key == OF_KEY_F11)
         ofSetFullscreen(fullscreen++ % 2 == 0);
     else if (key == OF_KEY_ESC)
         ofSetFullscreen(false);
     if(key== OF_KEY_UP){
+        if(mode == '5'){
+            if(snow->getSnowL() < 8){
+                
+            snow->setSnowL(snow->getSnowL() + 1);
+            }
+        }
         if(circle == true)
         {
-            if(level < 7){
+            if(level < 5){
                 level++;
             }
         }
@@ -152,15 +182,16 @@ void ofApp::keyPressed(int key) {
                 level++;
             }
         }
-        else if(circle == false && level < 10){
+        else if(fern == false && circle == false && level < 10 && mode != '5'){
 
-            level++;}
-        else if(fern == false && level < 10){
             level++;}
     }
     if(key== OF_KEY_DOWN){
         if(level > 0){
             level--;
+            }
+        if(mode == '5' && snow->getSnowL() > 1){
+            snow->setSnowL(snow->getSnowL()-1);
             }
     }
 }
