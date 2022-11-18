@@ -15,10 +15,12 @@ void ofApp::update() {
 //--------------------------------------------------------------
 void ofApp::draw() {
 
-    if(mode == '4' ){
-        ofBackgroundGradient(ofColor(ofColor::red), ofColor(0), OF_GRADIENT_BAR);
+    if(mode == '4'){
+        ofBackgroundGradient(ofColor(ofColor::black), ofColor(0), OF_GRADIENT_BAR);
     }
+    else{
     ofBackgroundGradient(ofColor(ofColor::black), ofColor(ofColor::darkSlateBlue), OF_GRADIENT_LINEAR);
+    }
 
     ofDrawBitmapString("MODE: " + ofToString(mode), 50, 100);
     if(mode < '5'){
@@ -53,6 +55,7 @@ void ofApp::draw() {
     } break;
     case '4':
         // Barnsley Fern
+        
         circle = false;
         fern =  true;
         drawMode4(0, 0, level * 1000);
@@ -135,6 +138,8 @@ void ofApp::drawMode4(float x, float y, float n) {
     float px = ofMap(x, -2.1820, 2.6558, 0, ofGetWidth());
     float py = ofMap(y, 0, 9.9983, ofGetHeight(), 0);
 
+    
+    
     ofFill();
     ofSetColor(ofColor::lawnGreen);
     ofDrawCircle(px, py, 0.6);
