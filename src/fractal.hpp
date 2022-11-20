@@ -1,11 +1,13 @@
 #pragma once 
+#include <string>
 
+using namespace std; 
 class Fractal{
     public:
         virtual ~Fractal () {};
         
         virtual void draw () = 0;
-        virtual void getName () = 0;
-        virtual void getLevel ()= 0; 
+        virtual string getName () = 0;
+        virtual int getLevel ()= 0; 
 };
 
