@@ -5,7 +5,7 @@
 using namespace std; 
 class Fractal{
     public:
-        // virtual ~Fractal () {};
+        virtual ~Fractal () {};
         
         virtual void draw () = 0;
         virtual string getName () = 0;
