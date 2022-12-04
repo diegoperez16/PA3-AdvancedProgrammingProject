@@ -5,6 +5,10 @@ void ofApp::setup() {
     ofSetEscapeQuitsApp(false);
     fullscreen = 0;
     snow = new SnowFlake();
+    currentNum = -1;
+    color = colores[currentNum];
+    // vector<ofColor> colores2(colores.begin(), colores.end());
+    
 }
 
 //--------------------------------------------------------------
@@ -24,7 +28,8 @@ void ofApp::draw() {
 
     ofDrawBitmapString("MODE: " + ofToString(mode), 50, 100);
     if(mode < '5'){
-    ofDrawBitmapString("LEVEL OF FRACTALIZATION: " + ofToString(level), 50, 150);}
+    ofDrawBitmapString("LEVEL OF FRACTALIZATION: " + ofToString(level), 50, 150);
+    ofDrawBitmapString("Color " + ofToString(color), 50, 200);}
     else if(mode == '5'){
     ofDrawBitmapString("LEVEL OF FRACTALIZATION SNOWFLAKE: " + ofToString(snow->getSnowL()), 50, 150);}
     
@@ -37,14 +42,19 @@ void ofApp::draw() {
         circle = true;
         float r = 0.31 * ofGetHeight();
         angle += 0.01;
-        drawMode1(ofGetWidth() / 2, ofGetHeight() / 2, r, level);
+       
+        drawMode1(ofGetWidth() / 2, ofGetHeight() / 2, r, level, 0);
+        
     } break;
     case '2': {
         // Tree
         fern =  false;
         circle = false;
         float length = 0.31 * ofGetHeight();
-        drawMode2(ofGetWidth() / 2, ofGetHeight() - 20, level, length, 1.5 * PI);
+        float length2 = (0.31) * ofGetHeight()/2;
+        drawMode2(ofGetWidth() / 2, ofGetHeight() - 20, level, length, 1.5 * PI, 0);
+        drawMode2((ofGetWidth() / 2) + 400, ofGetHeight() - 20, level, length2, 1.5 * PI, 0);
+        drawMode2((ofGetWidth() / 2) - 400, ofGetHeight() - 20, level, length2, 1.5 * PI, 0);
     } break;
     case '3': {
         // Sierpinski Triangle
@@ -81,11 +91,17 @@ void ofApp::draw() {
     }
 }
 
-void ofApp::drawMode1(float x, float y, float r, int n) {
+void ofApp::drawMode1(float x, float y, float r, int n, int max) {
     if (n == 0) return;
 
     int delta = r * 0.35;
+
+    
+    ofSetColor(colores[max]);
     ofDrawCircle(x, y, r);
+    ofSetColor(ofColor::white);
+
+
 
     float angle1 = angle;
     float angle2 = PI / 3 + angle;
@@ -93,26 +109,35 @@ void ofApp::drawMode1(float x, float y, float r, int n) {
     float angle4 = 2 * PI / 3 + angle;
     float angle5 = 4 * PI / 3 + angle;
     float angle6 = 5 * PI / 3 + angle;
-    drawMode1(x + r * cos(angle1), y + r * sin(angle1), delta, n - 1);
-    drawMode1(x + r * cos(angle2), y + r * sin(angle2), delta, n - 1);
-    drawMode1(x + r * cos(angle3), y + r * sin(angle3), delta, n - 1);
-    drawMode1(x + r * cos(angle4), y + r * sin(angle4), delta, n - 1);
-    drawMode1(x + r * cos(angle5), y + r * sin(angle5), delta, n - 1);
-    drawMode1(x + r * cos(angle6), y + r * sin(angle6), delta, n - 1);
+    drawMode1(x + r * cos(angle1), y + r * sin(angle1), delta, n - 1, max + 1);
+    drawMode1(x + r * cos(angle2), y + r * sin(angle2), delta, n - 1, max + 1);
+    drawMode1(x + r * cos(angle3), y + r * sin(angle3), delta, n - 1, max + 1 );
+    drawMode1(x + r * cos(angle4), y + r * sin(angle4), delta, n - 1, max + 1);
+    drawMode1(x + r * cos(angle5), y + r * sin(angle5), delta, n - 1, max + 1);
+    drawMode1(x + r * cos(angle6), y + r * sin(angle6), delta, n - 1, max +1);
 }
 
-void ofApp::drawMode2(float x, float y, int n, float length, float rad) {
+void ofApp::drawMode2(float x, float y, int n, float length, float rad, int max) {
     if (n == 0) return;
 
     float x2 = x + length * cos(rad);
     float y2 = y + length * sin(rad);
 
+    // float x3 = x + length * cos(rad);
+    // float y3 = y + length * sin(rad);
+
     
-
+    ofSetColor(colores[max]);
     ofDrawLine(x, y, x2, y2);
+    ofSetColor(ofColor::white);
 
-    drawMode2(x2, y2, n - 1, 0.7 * length, rad + 0.2 * PI);
-    drawMode2(x2, y2, n - 1,  0.7 * length, rad - 0.2 * PI);
+    // ofDrawLine(x + 600, y + 150, x3 + 600 , y3 + 150);
+
+    drawMode2(x2, y2, n - 1, 0.7 * length, rad + 0.2 * PI, max + 1);
+    drawMode2(x2, y2, n - 1,  0.7 * length, rad - 0.2 * PI, max + 1);
+
+    // drawMode2(x3 + 600, y3 + 150, n - 1, (0.7 * length)/2, (rad + 0.2 * PI)/2);
+    // drawMode2(x3 + 600, y3  + 150, n - 1,  (0.7* length)/2, (rad - 0.2 * PI)/2);
 }
 
 void ofApp::drawMode3(float x, float y, float size, int n) {
@@ -124,7 +149,10 @@ void ofApp::drawMode3(float x, float y, float size, int n) {
     ofPoint b(x + size, y);
     ofPoint c(x + size / 2, y + ((sqrt(3) * size) / 2));
 
+    
+    ofSetColor(color);
     ofDrawTriangle(a, b, c);
+    ofSetColor(ofColor::white);
 
     drawMode3(x, y, size / 2, n - 1);
     drawMode3((a.x + b.x) / 2, (a.y + b.y) / 2, size / 2, n - 1);
@@ -184,6 +212,8 @@ void ofApp::keyPressed(int key) {
         if(circle == true)
         {
             if(level < 5){
+                currentNum++;
+                color = colores[currentNum];
                 level++;
             }
         }
@@ -193,11 +223,14 @@ void ofApp::keyPressed(int key) {
             }
         }
         else if(fern == false && circle == false && level < 10 && mode != '5'){
-
+            currentNum++;
+            color = colores[currentNum];
             level++;}
     }
     if(key== OF_KEY_LEFT){
         if(level > 0){
+            currentNum--;
+            color = colores[currentNum];
             level--;
             }
         if(mode == '5' && snow->getSnowL() > 1){

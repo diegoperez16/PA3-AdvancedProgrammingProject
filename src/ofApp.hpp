@@ -6,15 +6,22 @@
 
 class ofApp : public ofBaseApp {
   private:
+
+    int currentNum;
+    ofColor color;
     SnowFlake* snow;
     bool circle = false;
     bool fern = false;
+    
     int level = 0;
     char mode = '1';
     float angle = 0;
     unsigned int fullscreen;
 
   public:
+
+    vector<ofColor> colores{ ofColor::red, ofColor::blue, ofColor:: green, ofColor:: yellow, ofColor::white, ofColor::pink, ofColor::orange, ofColor::aqua, ofColor::purple, ofColor::teal};
+    
     void setup();
     void update();
     void draw();
@@ -31,8 +38,8 @@ class ofApp : public ofBaseApp {
     void dragEvent(ofDragInfo dragInfo);
     void gotMessage(ofMessage msg);
 
-    void drawMode1(float x, float y, float r, int n);
-    void drawMode2(float x, float y, int n, float length, float rad);
+    void drawMode1(float x, float y, float r, int n, int max);
+    void drawMode2(float x, float y, int n, float length, float rad, int max);
     void drawMode3(float x, float y, float size, int n);
     void drawMode4(float x, float y, float n);
     
