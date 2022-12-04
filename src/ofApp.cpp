@@ -53,8 +53,8 @@ void ofApp::draw() {
         float length = 0.31 * ofGetHeight();
         float length2 = (0.31) * ofGetHeight()/2;
         drawMode2(ofGetWidth() / 2, ofGetHeight() - 20, level, length, 1.5 * PI, 0);
-        drawMode2((ofGetWidth() / 2) + 400, ofGetHeight() - 20, level, length2, 1.5 * PI, 0);
-        drawMode2((ofGetWidth() / 2) - 400, ofGetHeight() - 20, level, length2, 1.5 * PI, 0);
+        drawMode2((ofGetWidth() / 2) + 400, ofGetHeight() - 20, level, length/4, 1.5 * PI, 0);
+        drawMode2((ofGetWidth() / 2) - 400, ofGetHeight() - 20, level, length/4, 1.5 * PI, 0);
     } break;
     case '3': {
         // Sierpinski Triangle
