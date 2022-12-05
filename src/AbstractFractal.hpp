@@ -7,6 +7,7 @@ class AbstractFractal: public Fractal{
         string getName () {}; 
         int getLevel () {}; 
 
-
     
+
+
 }; 
