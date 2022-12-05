@@ -241,7 +241,12 @@ void ofApp::keyPressed(int key) {
                 level++;
             }
         }
-        else if(mode != '4' && mode != '1' && level < 10 && mode != '5'){
+        else if(mode == '2'){
+            if(level < 15){
+                level++;
+            }
+        }
+        else if(mode != '4' && mode != '2' && mode != '1' && level < 10 && mode != '5'){
             currentNum++;
             color = colores[currentNum];
             level++;}
