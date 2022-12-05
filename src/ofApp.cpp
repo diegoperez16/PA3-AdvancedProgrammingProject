@@ -38,8 +38,7 @@ void ofApp::draw() {
     switch (mode) {
     case '1': {
         // Circle
-        fern =  false;
-        circle = true;
+        
         float r = 0.31 * ofGetHeight();
         angle += 0.01;
        
@@ -48,32 +47,26 @@ void ofApp::draw() {
     } break;
     case '2': {
         // Tree
-        fern =  false;
-        circle = false;
+        
         float length = 0.31 * ofGetHeight();
-        float length2 = (0.31) * ofGetHeight()/2;
         drawMode2(ofGetWidth() / 2, ofGetHeight() - 20, level, length, 1.5 * PI, 0);
-        drawMode2((ofGetWidth() / 2) + 400, ofGetHeight() - 20, level, length/4, 1.5 * PI, 0);
+        drawMode2((ofGetWidth() / 2) + 400, ofGetHeight() - 20
+        , level, length/4, 1.5 * PI, 0);
         drawMode2((ofGetWidth() / 2) - 400, ofGetHeight() - 20, level, length/4, 1.5 * PI, 0);
     } break;
     case '3': {
         // Sierpinski Triangle
-        circle = false;
-        fern =  false;
         float size = 0.88 * ofGetHeight();
-        drawMode3((ofGetWidth() - size) / 2, ofGetHeight() / 2 - 0.4 * size, size, level);
+        drawMode3((ofGetWidth() - size) / 2, ofGetHeight() / 2 - 0.4 * size, size, level, 0);
     } break;
     case '4':
         // Barnsley Fern
-        
-        circle = false;
-        fern =  true;
-        drawMode4(0, 0, level * 1000);
+
+        drawMode4(0, 0, level * 1000, 0);
         break;
     case '5':
         // Koch 
-        fern =  false;
-        circle = false;
+        
         
         // SnowFlake().draw();
 
@@ -97,7 +90,13 @@ void ofApp::drawMode1(float x, float y, float r, int n, int max) {
     int delta = r * 0.35;
 
     
-    ofSetColor(colores[max]);
+    if(max < colores.size()){
+        ofSetColor(colores[max]);
+    }
+    else{
+        max = 0;
+        ofSetColor(colores[max]);
+    }
     ofDrawCircle(x, y, r);
     ofSetColor(ofColor::white);
 
@@ -127,7 +126,13 @@ void ofApp::drawMode2(float x, float y, int n, float length, float rad, int max)
     // float y3 = y + length * sin(rad);
 
     
-    ofSetColor(colores[max]);
+     if(max < colores.size()){
+        ofSetColor(colores[max]);
+    }
+    else{
+        max = 0;
+        ofSetColor(colores[max]);
+    }
     ofDrawLine(x, y, x2, y2);
     ofSetColor(ofColor::white);
 
@@ -140,7 +145,7 @@ void ofApp::drawMode2(float x, float y, int n, float length, float rad, int max)
     // drawMode2(x3 + 600, y3  + 150, n - 1,  (0.7* length)/2, (rad - 0.2 * PI)/2);
 }
 
-void ofApp::drawMode3(float x, float y, float size, int n) {
+void ofApp::drawMode3(float x, float y, float size, int n, int max) {
     if (n == 0) {
         return;
     }
@@ -150,15 +155,21 @@ void ofApp::drawMode3(float x, float y, float size, int n) {
     ofPoint c(x + size / 2, y + ((sqrt(3) * size) / 2));
 
     
-    ofSetColor(color);
+     if(max < colores.size()){
+        ofSetColor(colores[max]);
+    }
+    else{
+        max = 0;
+        ofSetColor(colores[max]);
+    }
     ofDrawTriangle(a, b, c);
     ofSetColor(ofColor::white);
 
-    drawMode3(x, y, size / 2, n - 1);
-    drawMode3((a.x + b.x) / 2, (a.y + b.y) / 2, size / 2, n - 1);
+    drawMode3(x, y, size / 2, n - 1, max +1);
+    drawMode3((a.x + b.x) / 2, (a.y + b.y) / 2, size / 2, n - 1, max+1);
 }
 
-void ofApp::drawMode4(float x, float y, float n) {
+void ofApp::drawMode4(float x, float y, float n, int max) {
     if (n == 0) return;
 
     float r = ofRandom(1);
@@ -169,21 +180,29 @@ void ofApp::drawMode4(float x, float y, float n) {
     
     
     ofFill();
-    ofSetColor(ofColor::lawnGreen);
+
+    if(max < colores.size()){
+        ofSetColor(colores[max]);
+    }
+    else{
+        max = 0;
+        ofSetColor(colores[max]);
+    }
+  
     ofDrawCircle(px, py, 0.6);
     ofSetColor(ofColor::white);
 
     if (r < 0.01)
-        drawMode4(0, 0.16 * y, n - 1);
+        drawMode4(0, 0.16 * y, n - 1, max+1);
 
     else if (r < 0.86)
-        drawMode4(0.85 * x + 0.04 * y, -0.04 * x + 0.85 * y + 1.6, n - 1);
+        drawMode4(0.85 * x + 0.04 * y, -0.04 * x + 0.85 * y + 1.6, n - 1, max+1);
 
     else if (r < 0.93)
-        drawMode4(0.2 * x - 0.26 * y, 0.23 * x + 0.22 * y + 1.6, n - 1);
+        drawMode4(0.2 * x - 0.26 * y, 0.23 * x + 0.22 * y + 1.6, n - 1,max);
 
     else
-        drawMode4(-0.15 * x + 0.28 * y, 0.26 * x + 0.24 * y + 0.44, n - 1);
+        drawMode4(-0.15 * x + 0.28 * y, 0.26 * x + 0.24 * y + 0.44, n - 1,max);
 }
 //--------------------------------------------------------------
 
@@ -209,7 +228,7 @@ void ofApp::keyPressed(int key) {
             snow->setSnowL(snow->getSnowL() + 1);
             }
         }
-        if(circle == true)
+        if(mode == '1')
         {
             if(level < 5){
                 currentNum++;
@@ -217,12 +236,12 @@ void ofApp::keyPressed(int key) {
                 level++;
             }
         }
-        else if(fern == true){
+        else if(mode == '4'){
             if(level < 50){
                 level++;
             }
         }
-        else if(fern == false && circle == false && level < 10 && mode != '5'){
+        else if(mode != '4' && mode != '1' && level < 10 && mode != '5'){
             currentNum++;
             color = colores[currentNum];
             level++;}

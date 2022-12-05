@@ -40,7 +40,7 @@ class ofApp : public ofBaseApp {
 
     void drawMode1(float x, float y, float r, int n, int max);
     void drawMode2(float x, float y, int n, float length, float rad, int max);
-    void drawMode3(float x, float y, float size, int n);
-    void drawMode4(float x, float y, float n);
+    void drawMode3(float x, float y, float size, int n, int max);
+    void drawMode4(float x, float y, float n, int max);
     
 };
