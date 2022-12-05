@@ -56,7 +56,7 @@ void ofApp::draw() {
     } break;
     case '3': {
         // Sierpinski Triangle
-        float size = 0.88 * ofGetHeight();
+        float size = 0.50 * ofGetHeight();
         drawMode3((ofGetWidth() - size) / 2, ofGetHeight() / 2 - 0.4 * size, size, level, 0);
     } break;
     case '4':
@@ -166,7 +166,7 @@ void ofApp::drawMode3(float x, float y, float size, int n, int max) {
     ofSetColor(ofColor::white);
 
     drawMode3(x, y, size / 2, n - 1, max+1);
-    drawMode3((a.x + b.x) / 2, (a.y + b.y) / 2, size / 2, n - 1, max+1);
+    drawMode3((c.x + b.x) / 2, (c.y + b.y) / 2, size / 2, n - 1, max+1);
     drawMode3((a.x + c.x) / 2, (a.y + c.y) / 2, size / 2, n - 1, max+1);
 }
 
