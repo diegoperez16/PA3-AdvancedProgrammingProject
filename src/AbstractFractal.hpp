@@ -2,19 +2,22 @@
 
 class AbstractFractal: public Fractal{
     protected: 
-        int x; 
-        int y; 
+        float x; 
+        float y; 
         int level;
+        int colorXLevel;
         string name; 
 
 
+
     public: 
-        ~AbstractFractal(); \
-        AbstractFractal(string name1, int x1, int y1, int level1) {
+        ~AbstractFractal(); 
+        AbstractFractal(string name1, float x1, float y1, int level1, int dephColor) {
             this->name = name1; 
             this->x = x1; 
             this->y = y1;
             this->level = level1; 
+            this->colorXLevel = dephColor;
         };
 
         void draw () {}; 
@@ -25,7 +28,10 @@ class AbstractFractal: public Fractal{
         int getX(){return x;}
         int getY(){return y;}
 
-        void  setX(int x2) {x = x2;}
-        void  setY(int y2) { y = y2;}
+        void  setX(float x2) {x = x2;}
+        void  setY(float y2) { y = y2;}
+
+        int getColorL(){return colorXLevel;}
+        void  setColorL(int color){ colorXLevel = color;}
     
 }; 
