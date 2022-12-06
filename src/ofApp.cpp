@@ -81,6 +81,11 @@ void ofApp::draw() {
         snow->drawICE(snow->getSnowL(), new SnowFlake(p2, p3));
         snow->drawICE(snow->getSnowL(), new SnowFlake(p3, p1));
         break;
+    case '6':
+        //new fractal: 
+        float size = 0.88 * ofGetHeight();
+        drawMode6((ofGetWidth() - size) / 2, ofGetHeight() / 2 - 0.4 * size, size, level, 0);
+        break; 
     }
 }
 
@@ -204,6 +209,33 @@ void ofApp::drawMode4(float x, float y, float n, int max) {
     else
         drawMode4(-0.15 * x + 0.28 * y, 0.26 * x + 0.24 * y + 0.44, n - 1,max);
 }
+//Draws the sierpinski carpet
+void ofApp::drawMode6(float x, float y, float size, int n, int max) {
+    if (n == 0) {
+        return;
+    }
+
+    ofPoint a(x, y);
+    ofPoint b(x + size, y);
+    ofPoint c(x, y + size); 
+    ofPoint d( x + size, y +size); 
+    // ofPoint c(x + size / 2, y + ((sqrt(3) * size) / 2));
+
+    
+    if(max < colores.size()){
+        ofSetColor(colores[max]);
+    }
+    else{
+        max = 0;
+        ofSetColor(colores[max]);
+    }
+    ofDrawRectangle(x,y,size,size);
+    ofSetColor(ofColor::white);
+
+    drawMode6(x + size/3, y + size/3, size/3, n - 1, max +1);
+    
+}
+
 //--------------------------------------------------------------
 
 int ofApp::getLevel(){
@@ -213,7 +245,7 @@ int ofApp::getLevel(){
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key) {
 
-    if (key >= '1' && key <= '5'){
+    if (key >= '1' && key <= '6'){
         level = 0;
         mode = key;}
     
