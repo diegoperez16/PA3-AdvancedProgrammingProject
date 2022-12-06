@@ -1,3 +1,6 @@
+#pragma once 
+#include <string>
+#include "ofMain.h"
 #include "fractal.hpp"
 
 class AbstractFractal: public Fractal{
@@ -12,6 +15,7 @@ class AbstractFractal: public Fractal{
 
     public: 
         ~AbstractFractal(); 
+        vector<ofColor> colores2{ ofColor::red, ofColor::blue, ofColor:: green, ofColor:: yellow, ofColor::white, ofColor::pink, ofColor::orange, ofColor::aqua, ofColor::purple, ofColor::teal};
         AbstractFractal(string name1, float x1, float y1, int level1, int dephColor) {
             this->name = name1; 
             this->x = x1; 
@@ -21,12 +25,10 @@ class AbstractFractal: public Fractal{
         };
 
         void draw () {}; 
-        virtual void drawFractal() = 0;
         string getName () {return name;} 
         int getLevel () {return level;} 
-       
-        int getX(){return x;}
-        int getY(){return y;}
+        float getX(){return x;}
+        float getY(){return y;}
 
         void  setX(float x2) {x = x2;}
         void  setY(float y2) { y = y2;}

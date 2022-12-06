@@ -4,6 +4,7 @@
 void ofApp::setup() {
     ofSetEscapeQuitsApp(false);
     fullscreen = 0;
+    circle = new Circle("Circle", (ofGetWidth() / 2), (ofGetHeight() / 2), 0, 0, 0.0);
     snow = new SnowFlake();
     currentNum = -1;
     color = colores[currentNum];
@@ -26,7 +27,9 @@ void ofApp::draw() {
     ofBackgroundGradient(ofColor(ofColor::black), ofColor(ofColor::darkSlateBlue), OF_GRADIENT_LINEAR);
     }
 
-    ofDrawBitmapString("MODE: " + ofToString(mode), 50, 100);
+   
+    ofDrawBitmapString("MODE: " + circle->getName(), 50, 100);
+   
     if(mode < '5'){
     ofDrawBitmapString("LEVEL OF FRACTALIZATION: " + ofToString(level), 50, 150);
     ofDrawBitmapString("Color " + ofToString(color), 50, 200);}

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cmath>
+#include "Circle.hpp"
 #include "SnowFlake.hpp"
 #include "ofMain.h"
 
@@ -10,7 +11,8 @@ class ofApp : public ofBaseApp {
     int currentNum;
     ofColor color;
     SnowFlake* snow;
-    bool circle = false;
+    Circle* circle;
+    // bool circle = false;
     bool fern = false;
     
     int level = 0;
