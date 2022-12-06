@@ -20,8 +20,7 @@ class AbstractFractal: public Fractal{
             this->colorXLevel = dephColor;
         };
 
-        void draw () {}; 
-        virtual void drawFractal() = 0;
+       virtual void draw () {}; 
         string getName () {return name;} 
         int getLevel () {return level;} 
        
