@@ -1,26 +1,28 @@
 #include "SnowFlake.hpp"
 
 
-SnowFlake::SnowFlake() {
-}
-
-SnowFlake::SnowFlake(glm::vec2 start, glm::vec2 end) {
-    this->start = start;
-    this->end = end;
-}
-
 void SnowFlake::draw() {
     
+        float size = 0.74 * ofGetHeight();
+
+        glm::vec2 p1 = {(ofGetWidth() - size) / 2, (ofGetHeight() - size * sin(PI / 3)) / 2 + 0.15 * size};
+        glm::vec2 p2 = {(ofGetWidth() + size) / 2, (ofGetHeight() - size * sin(PI / 3)) / 2 + 0.15 * size};
+        glm::vec2 p3 = {ofGetWidth() / 2, (ofGetHeight() + size * sin(PI / 3)) / 2 + 0.15 * size};
+
+
+        drawFractal(this->level, new SnowFlake("", 0.0, 0.0 ,0,0 ,p1, p2));   
+        drawFractal(this->level, new SnowFlake("", 0.0, 0.0 ,0,0 ,p2, p3));
+        drawFractal(this->level, new SnowFlake("", 0.0, 0.0 ,0,0 ,p3, p1));
 }
-void SnowFlake::drawICE(int n, SnowFlake *flake) {
+void SnowFlake::drawFractal(int n, SnowFlake *flake) {
    
     if (n < 2)
         ofDrawLine(flake->getStart(), flake->getEnd());
     else {
-        drawICE(n - 1, new SnowFlake(flake->getA(), flake->getB()));
-        drawICE(n - 1, new SnowFlake(flake->getB(), flake->getC()));
-        drawICE(n - 1, new SnowFlake(flake->getC(), flake->getD()));
-        drawICE(n - 1, new SnowFlake(flake->getD(), flake->getE()));
+        drawFractal(n - 1, new SnowFlake("", 0.0, 0.0 ,0,0 , flake->getA(), flake->getB()));
+        drawFractal(n - 1, new SnowFlake("", 0.0, 0.0 ,0,0 ,flake->getB(), flake->getC()));
+        drawFractal(n - 1, new SnowFlake("", 0.0, 0.0 ,0,0 ,flake->getC(), flake->getD()));
+        drawFractal(n - 1, new SnowFlake("", 0.0, 0.0 ,0,0 ,flake->getD(), flake->getE()));
     }
     delete flake;
 }

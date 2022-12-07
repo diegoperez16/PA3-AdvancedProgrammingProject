@@ -4,12 +4,12 @@
 void ofApp::setup() {
     ofSetEscapeQuitsApp(false);
     fullscreen = 0;
-    circle = new Circle("CIRCLE", (ofGetWidth() / 2), (ofGetHeight() / 2), 0, 0, 0.0);
-    tree = new Tree("TREE", ofGetWidth() / 2, ofGetHeight() - 20, 0.0, 0, 0,  0.0 );
-    t = new TriangleSier("TRIANGLE", 0.0, 0.0, 0, 0,0);
+    circle = new Circle("CIRCLE", (ofGetWidth() / 2), (ofGetHeight() / 2), 1, 0, 0.0);
+    tree = new Tree("TREE", ofGetWidth() / 2, ofGetHeight() - 20, 1, 0, 0,  0.0 );
+    t = new TriangleSier("TRIANGLE", 0.0, 0.0, 1, 0,0);
     f = new Fern("FERN", 0.0,0.0,0,0);
-    tetra = new Tetra("TRETRA CIRCLE", 0.0,0.0, 0,0);
-    snow = new SnowFlake();
+    tetra = new Tetra("TRETRA CIRCLE", 0.0,0.0, 1,0);
+    snow = new SnowFlake("SNOWFLAKE", 0.0, 0.0 ,0,0 , snow->getStart(), snow->getEnd());
     // vector<ofColor> colores2(colores.begin(), colores.end());
     
 }
@@ -33,7 +33,7 @@ void ofApp::draw() {
     ofDrawBitmapString("LEVEL OF FRACTALIZATION: " + ofToString(level), 50, 150);
     ofDrawBitmapString("Color " + ofToString(color), 50, 200);}
     else if(mode == '5'){
-    ofDrawBitmapString("LEVEL OF FRACTALIZATION SNOWFLAKE: " + ofToString(snow->getSnowL()), 50, 150);}
+    ofDrawBitmapString("LEVEL OF FRACTALIZATION SNOWFLAKE: " + ofToString(snow->getLevel()), 50, 150);}
     
 
     ofNoFill();
@@ -61,16 +61,7 @@ void ofApp::draw() {
     case '5':{
         // Koch 
 
-        float size = 0.74 * ofGetHeight();
 
-        glm::vec2 p1 = {(ofGetWidth() - size) / 2, (ofGetHeight() - size * sin(PI / 3)) / 2 + 0.15 * size};
-        glm::vec2 p2 = {(ofGetWidth() + size) / 2, (ofGetHeight() - size * sin(PI / 3)) / 2 + 0.15 * size};
-        glm::vec2 p3 = {ofGetWidth() / 2, (ofGetHeight() + size * sin(PI / 3)) / 2 + 0.15 * size};
-
-
-        snow->drawICE(snow->getSnowL(), new SnowFlake(p1, p2));   
-        snow->drawICE(snow->getSnowL(), new SnowFlake(p2, p3));
-        snow->drawICE(snow->getSnowL(), new SnowFlake(p3, p1));
     }break;
 
 
@@ -87,6 +78,7 @@ void ofApp::draw() {
 void ofApp::keyPressed(int key) {
 
     if (key >= '1' && key <= '6'){
+
         mode = key;}
     
     else if (key == OF_KEY_F11)
@@ -95,21 +87,11 @@ void ofApp::keyPressed(int key) {
         ofSetFullscreen(false);
 
     if(key== OF_KEY_RIGHT){
-        if(mode == '5'){
-            if(snow->getSnowL() < 8){
-                
-            snow->setSnowL(snow->getSnowL() + 1);
-            }
-        }
+
         if(mode == '1')
         {
             if(circle->getLevel() < 5){
                 circle->setLevel(circle->getLevel() + 1);
-            }
-        }
-        else if(mode == '4'){
-            if(f->getLevel() < 50){
-                f->setLevel(f->getLevel() + 1);
             }
         }
         else if(mode == '2'){
@@ -122,6 +104,17 @@ void ofApp::keyPressed(int key) {
                 t->setLevel(t->getLevel() + 1);
             }
         }
+        else if(mode == '4'){
+            if(f->getLevel() < 50){
+                f->setLevel(f->getLevel() + 1);
+            }
+        }
+        else if(mode == '5'){
+            if(snow->getLevel() < 8){
+                
+            snow->setLevel(snow->getLevel() + 1);
+            }
+        }
         else if(mode == '6'){
             if(tetra->getLevel() < 10){
                 tetra->setLevel(tetra->getLevel() + 1);
@@ -129,17 +122,17 @@ void ofApp::keyPressed(int key) {
         }}
     if(key== OF_KEY_LEFT){
         if(mode == '1'){
-            if(circle->getLevel() > 0){
+            if(circle->getLevel() > 1){
                 circle->setLevel(circle->getLevel() - 1);
             }
         }
         else if(mode == '2'){
-            if(tree->getLevel() > 0){
+            if(tree->getLevel() > 1){
                 tree->setLevel(tree->getLevel() - 1);
             }
         }
         else if(mode == '3'){
-            if(t->getLevel() > 0){
+            if(t->getLevel() > 1){
                 t->setLevel(t->getLevel() - 1);
             }
         }
@@ -148,11 +141,11 @@ void ofApp::keyPressed(int key) {
                 f->setLevel(f->getLevel() - 1);
             }
         }
-        else if(mode == '5' && snow->getSnowL() > 1){
-            snow->setSnowL(snow->getSnowL()-1);
+        else if(mode == '5' && snow->getLevel() > 1){
+            snow->setLevel(snow->getLevel()-1);
             }
         else if(mode == '6'){
-            if(tetra->getLevel() > 0){
+            if(tetra->getLevel() > 1){
                 tetra->setLevel(tetra->getLevel() - 1);
             }
         }
