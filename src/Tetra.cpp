@@ -10,6 +10,7 @@ void Tetra::drawFractal(float x, float y, float size, int n, int max){
         return;
     }
 
+    ofNoFill();
     if(max < colores2.size()){
         ofSetColor(colores2[max]);
     }

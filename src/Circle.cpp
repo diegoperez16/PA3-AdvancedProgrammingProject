@@ -13,7 +13,7 @@ void Circle::drawFractal(float x, float y, float r, int n, int max){
 
     int delta = r * 0.35;
 
-    
+    ofNoFill();
     if(max < colores2.size()){
         ofSetColor(colores2[max]);
     }

@@ -4,12 +4,19 @@
 void ofApp::setup() {
     ofSetEscapeQuitsApp(false);
     fullscreen = 0;
+    circle_in_vector = false;
     circle = new Circle("CIRCLE", (ofGetWidth() / 2), (ofGetHeight() / 2), 0, 1, 0.0);
     tree = new Tree("TREE", ofGetWidth() / 2, ofGetHeight() - 20, 1, 0, 0,  0.0 );
     t = new TriangleSier("TRIANGLE", 0.0, 0.0, 1, 0,0);
     f = new Fern("FERN", 0.0,0.0,1,0);
     tetra = new Tetra("TRETRA CIRCLE", 0.0,0.0, 1,0);
     snow = new SnowFlake();
+
+    fractals.push_back(circle);
+    fractals.push_back(tree);
+    fractals.push_back(t);
+    fractals.push_back(f);
+    fractals.push_back(tetra);
     
 }
 
@@ -27,57 +34,30 @@ void ofApp::draw() {
     else{
     ofBackgroundGradient(ofColor(ofColor::black), ofColor(ofColor::darkSlateBlue), OF_GRADIENT_LINEAR);
     }
-   
-    if(mode <= '6'){
-    ofDrawBitmapString("LEVEL OF FRACTALIZATION: " + ofToString(level), 50, 150);
-    ofDrawBitmapString("Color " + ofToString(color), 50, 200);}
-    else if(mode == '5'){
-    ofDrawBitmapString("LEVEL OF FRACTALIZATION SNOWFLAKE: " + ofToString(snow->getSnowL()), 50, 150);}
     
 
+
+    if(mode <= '5'){
+    ofDrawBitmapString("LEVEL OF FRACTALIZATION: " + ofToString(level), 50, 150);
+    ofDrawBitmapString("Color " + ofToString(color), 50, 200);
+    snow->drawICE();}
+    
+    // ofDrawBitmapString("NAME OF FRACTAL IN VECTOR : " + ofToString(fractals[fpos]->getName()), 50, 300);
+    
     ofNoFill();
-    switch (mode) {
-    case '1': {
-        // Circle
-        ofDrawBitmapString("MODE: " + circle->getName(), 50, 100);
-        circle->draw();
-    } break;
-    case '2': {
-        // Tree
-        ofDrawBitmapString("MODE: " + tree->getName(), 50, 100);
-        tree->draw();
-    } break;
-    case '3': {
-        // Sierpinski Triangle
-        ofDrawBitmapString("MODE: " + t->getName(), 50, 100);
-        t->draw();
-    } break;
-    case '4':
-        // Barnsley Fern
-        ofDrawBitmapString("MODE: " + f->getName(), 50, 100);
-        f->draw();
-        break;
-    case '5':{
-        // Koch 
-
-        float size = 0.74 * ofGetHeight();
-
-        glm::vec2 p1 = {(ofGetWidth() - size) / 2, (ofGetHeight() - size * sin(PI / 3)) / 2 + 0.15 * size};
-        glm::vec2 p2 = {(ofGetWidth() + size) / 2, (ofGetHeight() - size * sin(PI / 3)) / 2 + 0.15 * size};
-        glm::vec2 p3 = {ofGetWidth() / 2, (ofGetHeight() + size * sin(PI / 3)) / 2 + 0.15 * size};
-
-
-        snow->drawICE(snow->getSnowL(), new SnowFlake(p1, p2));   
-        snow->drawICE(snow->getSnowL(), new SnowFlake(p2, p3));
-        snow->drawICE(snow->getSnowL(), new SnowFlake(p3, p1));
-    }break;
-
-
-    case '6':{
-        ofDrawBitmapString("MODE: " + tetra->getName(), 50, 100);
-        tetra->draw();
+    for(int i = 0; i<fractals.size(); i++){
+        if(i+1 == int(mode)-48){
+            ofDrawBitmapString("NAME OF FRACTAL: " + ofToString(fractals[i]->getName()), 50, 100);
+            ofDrawBitmapString("LEVEL OF FRACTALIZATION: " + ofToString(fractals[i]->getLevel()), 50, 150);
+            fractals[i]->draw();
+        }
+        else if(i+1 == 5 && mode == '6'){
+            ofDrawBitmapString("NAME OF FRACTAL IN VECTOR : " + ofToString(fractals[i]->getName()), 50, 300);
+            fractals[i]->draw();
+        }
     }
-}}
+
+}
 
 //--------------------------------------------------------------
 
@@ -155,8 +135,10 @@ void ofApp::keyPressed(int key) {
                 tetra->setLevel(tetra->getLevel() - 1);
             }
         }
-
-}
+    }
+    if(key == 'w'){
+        fpos++;
+    }
 }
 
 

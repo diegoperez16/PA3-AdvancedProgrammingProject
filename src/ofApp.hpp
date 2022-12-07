@@ -1,4 +1,5 @@
 #pragma once
+#include "AbstractFractal.hpp"
 #include "Triangle.hpp"
 #include "Fern.hpp"
 #include "TetraCircle.hpp"
@@ -10,19 +11,16 @@
 
 class ofApp : public ofBaseApp {
   private:
-
+    bool circle_in_vector;
+    int level = 0;
+    int fpos = 0;
     TriangleSier* t; 
     Fern* f;
-    int currentNum;
     ofColor color;
     SnowFlake* snow;
     Circle* circle;
     Tree* tree;
     Tetra* tetra;
-    // bool circle = false;
-    bool fern = false;
-    
-    int level = 0;
     char mode = '1';
     float angle = 0;
     unsigned int fullscreen;
@@ -30,6 +28,7 @@ class ofApp : public ofBaseApp {
   public:
 
     vector<ofColor> colores{ ofColor::red, ofColor::blue, ofColor:: green, ofColor:: yellow, ofColor::white, ofColor::pink, ofColor::orange, ofColor::aqua, ofColor::purple, ofColor::teal};
+    vector<AbstractFractal*> fractals;
     
     void setup();
     void update();
