@@ -127,9 +127,28 @@ void ofApp::keyPressed(int key) {
                 tetra->setLevel(tetra->getLevel() + 1);
             }
         }}
-    }
     if(key== OF_KEY_LEFT){
-        if(mode == '5' && snow->getSnowL() > 1){
+        if(mode == '1'){
+            if(circle->getLevel() > 0){
+                circle->setLevel(circle->getLevel() - 1);
+            }
+        }
+        else if(mode == '2'){
+            if(tree->getLevel() > 0){
+                tree->setLevel(tree->getLevel() - 1);
+            }
+        }
+        else if(mode == '3'){
+            if(t->getLevel() > 0){
+                t->setLevel(t->getLevel() - 1);
+            }
+        }
+        else if(mode == '4'){
+            if(f->getLevel() > 0){
+                f->setLevel(f->getLevel() - 1);
+            }
+        }
+        else if(mode == '5' && snow->getSnowL() > 1){
             snow->setSnowL(snow->getSnowL()-1);
             }
         else if(mode == '6'){
@@ -139,7 +158,7 @@ void ofApp::keyPressed(int key) {
         }
 
 }
-
+}
 
 
 //--------------------------------------------------------------
