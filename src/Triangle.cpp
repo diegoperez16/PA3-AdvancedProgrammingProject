@@ -16,15 +16,6 @@ void TriangleSier::drawFractal(float x, float y, float size, int n, int max){
     ofPoint b(x + size, y);
     ofPoint c(x + size / 2, y + ((sqrt(3) * size) / 2));
 
-    
-    //  if(max < colores2.size()){
-    //     ofSetColor(colores2[max]);
-    // }
-    // else{
-    //     max = 0;
-    //     ofSetColor(colores2[max]);
-    // }
-    // ofSetColor(ofColor::white);
 
     drawFractal(x, y, size / 2, n - 1, max+1);
     drawFractal((a.x + b.x) / 2, (a.y + b.y) / 2, size / 2, n - 1, max+1);
