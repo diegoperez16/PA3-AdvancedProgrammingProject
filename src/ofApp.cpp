@@ -4,8 +4,9 @@
 void ofApp::setup() {
     ofSetEscapeQuitsApp(false);
     fullscreen = 0;
-    circle = new Circle("Circle", (ofGetWidth() / 2), (ofGetHeight() / 2), 0, 0, 0.0);
-    tree = new Tree("Tree", ofGetWidth() / 2, ofGetHeight() - 20, 0.0, 0, 0,  0.0 );
+    circle = new Circle("CIRCLE", (ofGetWidth() / 2), (ofGetHeight() / 2), 0, 0, 0.0);
+    tree = new Tree("TREE", ofGetWidth() / 2, ofGetHeight() - 20, 0.0, 0, 0,  0.0 );
+    t = new TriangleSier("TRIANGLE", 0.0, 0.0, 0, 0,0);
     snow = new SnowFlake();
     currentNum = -1;
     color = colores[currentNum];
@@ -42,23 +43,18 @@ void ofApp::draw() {
     switch (mode) {
     case '1': {
         // Circle
-        
         circle->draw();
-        
     } break;
     case '2': {
         // Tree
-        
         tree->draw();
     } break;
     case '3': {
         // Sierpinski Triangle
-        float size = 0.88 * ofGetHeight();
-        drawMode3((ofGetWidth() - size) / 2, ofGetHeight() / 2 - 0.4 * size, size, level, 0);
+        t->draw();
     } break;
     case '4':
         // Barnsley Fern
-
         drawMode4(0, 0, level * 1000, 0);
         break;
     case '5':{
@@ -87,30 +83,30 @@ void ofApp::draw() {
 
 
 
-void ofApp::drawMode3(float x, float y, float size, int n, int max) {
-    if (n == 0) {
-        return;
-    }
+// void ofApp::drawMode3(float x, float y, float size, int n, int max) {
+//     if (n == 0) {
+//         return;
+//     }
 
-    ofPoint a(x, y);
-    ofPoint b(x + size, y);
-    ofPoint c(x + size / 2, y + ((sqrt(3) * size) / 2));
+//     ofPoint a(x, y);
+//     ofPoint b(x + size, y);
+//     ofPoint c(x + size / 2, y + ((sqrt(3) * size) / 2));
 
     
-     if(max < colores.size()){
-        ofSetColor(colores[max]);
-    }
-    else{
-        max = 0;
-        ofSetColor(colores[max]);
-    }
-    ofDrawTriangle(a, b, c);
-    ofSetColor(ofColor::white);
+//      if(max < colores.size()){
+//         ofSetColor(colores[max]);
+//     }
+//     else{
+//         max = 0;
+//         ofSetColor(colores[max]);
+//     }
+//     ofDrawTriangle(a, b, c);
+//     ofSetColor(ofColor::white);
 
-    drawMode3(x, y, size / 2, n - 1, max+1);
-    drawMode3((a.x + b.x) / 2, (a.y + b.y) / 2, size / 2, n - 1, max+1);
-    drawMode3((a.x + c.x) / 2, (a.y + c.y) / 2, size / 2, n - 1, max+1);
-}
+//     drawMode3(x, y, size / 2, n - 1, max+1);
+//     drawMode3((a.x + b.x) / 2, (a.y + b.y) / 2, size / 2, n - 1, max+1);
+//     drawMode3((a.x + c.x) / 2, (a.y + c.y) / 2, size / 2, n - 1, max+1);
+// }
 
 void ofApp::drawMode4(float x, float y, float n, int max) {
     if (n == 0) return;
@@ -201,6 +197,11 @@ void ofApp::keyPressed(int key) {
         else if(mode == '2'){
             if(tree->getLevel() < 15){
                 tree->setLevel(tree->getLevel() + 1);
+            }
+        }
+        else if(mode== '3'){
+            if(t->getLevel() < 10){
+                t->setLevel(t->getLevel() + 1);
             }
         }
         else if(mode != '4' && mode != '2' && mode != '1' && level < 10 && mode != '5'){

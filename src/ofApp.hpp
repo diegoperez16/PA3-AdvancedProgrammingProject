@@ -1,5 +1,5 @@
 #pragma once
-
+#include "Triangle.hpp"
 #include <cmath>
 #include "Circle.hpp"
 #include "Tree.hpp"
@@ -9,6 +9,7 @@
 class ofApp : public ofBaseApp {
   private:
 
+    TriangleSier* t; 
     int currentNum;
     ofColor color;
     SnowFlake* snow;

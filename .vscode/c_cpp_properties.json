@@ -16,7 +16,13 @@
                 "C:/Users/diego/Downloads/UPRM-Uni/of_v0.11.2_msys2_mingw32_release/of_v0.11.2_msys2_mingw32_release/libs/json/include",
                 "C:/Users/diego/Downloads/UPRM-Uni/of_v0.11.2_msys2_mingw32_release/of_v0.11.2_msys2_mingw32_release/libs/openFrameworks/types",
                 "C:/Users/diego/Downloads/UPRM-Uni/of_v0.11.2_msys2_mingw32_release/of_v0.11.2_msys2_mingw32_release/libs/openFrameworks/math",
-                "C:/Users/diego/Downloads/UPRM-Uni/of_v0.11.2_msys2_mingw32_release/of_v0.11.2_msys2_mingw32_release/libs/openFrameworks/graphics"
+                "C:/Users/diego/Downloads/UPRM-Uni/of_v0.11.2_msys2_mingw32_release/of_v0.11.2_msys2_mingw32_release/libs/openFrameworks/graphics",
+                "C:/Users/diego/Downloads/UPRM-Uni/of_v0.11.2_msys2_mingw32_release/of_v0.11.2_msys2_mingw32_release/libs/openFrameworks/communication",
+                "C:/Users/diego/Downloads/UPRM-Uni/of_v0.11.2_msys2_mingw32_release/of_v0.11.2_msys2_mingw32_release/libs/openFrameworks/gl",
+                "C:/Users/diego/Downloads/UPRM-Uni/of_v0.11.2_msys2_mingw32_release/of_v0.11.2_msys2_mingw32_release/libs/openFrameworks/app",
+                "C:/Users/diego/Downloads/UPRM-Uni/of_v0.11.2_msys2_mingw32_release/of_v0.11.2_msys2_mingw32_release/libs/openFrameworks/3d",
+                "C:/msys64/mingw32/include/cairo",
+                "C:/Users/diego/Downloads/UPRM-Uni/of_v0.11.2_msys2_mingw32_release/of_v0.11.2_msys2_mingw32_release/libs/openFrameworks/sound"
             ],
             "defines": [
                 "_DEBUG",
@@ -26,7 +32,7 @@
             "windowsSdkVersion": "10.0.17763.0",
             "compilerPath": "C:/msys64/mingw32/bin/g++.exe",
             "cStandard": "c11",
-            "cppStandard": "c++17",
+            "cppStandard": "c++11",
             "intelliSenseMode": "windows-gcc-x86"
         }
     ],

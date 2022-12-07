@@ -14,9 +14,6 @@ void Tree::drawFractal(float x, float y, float rad, int n, int max, float length
     float x2 = x + length * cos(rad);
     float y2 = y + length * sin(rad);
 
-    // float x3 = x + length * cos(rad);
-    // float y3 = y + length * sin(rad);
-
     
      if(max < colores2.size()){
         ofSetColor(colores2[max]);
@@ -28,13 +25,11 @@ void Tree::drawFractal(float x, float y, float rad, int n, int max, float length
     ofDrawLine(x, y, x2, y2);
     ofSetColor(ofColor::white);
 
-    // ofDrawLine(x + 600, y + 150, x3 + 600 , y3 + 150);
 
     drawFractal(x2, y2, rad + 0.2 * PI, n-1 , max+1, 0.7 * length);
-    drawFractal(x2, y2, rad + 0.2 * PI,  n-1, max+1, 0.7 * length);
+    drawFractal(x2, y2, rad - 0.2 * PI,  n-1, max+1, 0.7 * length);
 
-    // drawFractal(x3 + 600, y3 + 150, n - 1, (0.7 * length)/2, (rad + 0.2 * PI)/2);
-    // drawFractal(x3 + 600, y3  + 150, n - 1,  (0.7* length)/2, (rad - 0.2 * PI)/2);
+
 }
 
 
