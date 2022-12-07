@@ -4,11 +4,11 @@
 void ofApp::setup() {
     ofSetEscapeQuitsApp(false);
     fullscreen = 0;
-    circle = new Circle("CIRCLE", (ofGetWidth() / 2), (ofGetHeight() / 2), 0, 0, 0.0);
-    tree = new Tree("TREE", ofGetWidth() / 2, ofGetHeight() - 20, 0.0, 0, 0,  0.0 );
-    t = new TriangleSier("TRIANGLE", 0.0, 0.0, 0, 0,0);
-    f = new Fern("FERN", 0.0,0.0,0,0);
-    tetra = new Tetra("TRETRA CIRCLE", 0.0,0.0, 0,0);
+    circle = new Circle("CIRCLE", (ofGetWidth() / 2), (ofGetHeight() / 2), 0, 1, 0.0);
+    tree = new Tree("TREE", ofGetWidth() / 2, ofGetHeight() - 20, 1, 0, 0,  0.0 );
+    t = new TriangleSier("TRIANGLE", 0.0, 0.0, 1, 0,0);
+    f = new Fern("FERN", 0.0,0.0,1,0);
+    tetra = new Tetra("TRETRA CIRCLE", 0.0,0.0, 1,0);
     snow = new SnowFlake();
     // vector<ofColor> colores2(colores.begin(), colores.end());
     
@@ -129,22 +129,22 @@ void ofApp::keyPressed(int key) {
         }}
     if(key== OF_KEY_LEFT){
         if(mode == '1'){
-            if(circle->getLevel() > 0){
+            if(circle->getLevel() > 1){
                 circle->setLevel(circle->getLevel() - 1);
             }
         }
         else if(mode == '2'){
-            if(tree->getLevel() > 0){
+            if(tree->getLevel() > 1){
                 tree->setLevel(tree->getLevel() - 1);
             }
         }
         else if(mode == '3'){
-            if(t->getLevel() > 0){
+            if(t->getLevel() > 1){
                 t->setLevel(t->getLevel() - 1);
             }
         }
         else if(mode == '4'){
-            if(f->getLevel() > 0){
+            if(f->getLevel() > 1){
                 f->setLevel(f->getLevel() - 1);
             }
         }
@@ -152,7 +152,7 @@ void ofApp::keyPressed(int key) {
             snow->setSnowL(snow->getSnowL()-1);
             }
         else if(mode == '6'){
-            if(tetra->getLevel() > 0){
+            if(tetra->getLevel() > 1){
                 tetra->setLevel(tetra->getLevel() - 1);
             }
         }
