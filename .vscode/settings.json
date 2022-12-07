@@ -17,6 +17,10 @@
     "terminal.explorerKind": "external",
     "files.associations": {
         "cmath": "cpp",
-        "string": "cpp"
+        "string": "cpp",
+        "*.ipp": "cpp",
+        "string_view": "cpp",
+        "regex": "cpp",
+        "tuple": "cpp"
     },
 }

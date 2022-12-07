@@ -3,7 +3,7 @@
 
 void Circle::draw(){
     float r = 0.31 * ofGetHeight();
-    this->angle += 0.01;
+    angle += 0.01;
        
     drawFractal(ofGetWidth() / 2, ofGetHeight() / 2, r, this->level, 0);
 }

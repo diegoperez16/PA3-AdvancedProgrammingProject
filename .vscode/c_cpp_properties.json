@@ -14,7 +14,9 @@
                 "C:/Users/diego/Downloads/UPRM-Uni/of_v0.11.2_msys2_mingw32_release/of_v0.11.2_msys2_mingw32_release/libs/utf8/include",
                 "C:/Users/diego/Downloads/UPRM-Uni/of_v0.11.2_msys2_mingw32_release/of_v0.11.2_msys2_mingw32_release/libs/glm/include",
                 "C:/Users/diego/Downloads/UPRM-Uni/of_v0.11.2_msys2_mingw32_release/of_v0.11.2_msys2_mingw32_release/libs/json/include",
-                "C:/Users/diego/Downloads/UPRM-Uni/of_v0.11.2_msys2_mingw32_release/of_v0.11.2_msys2_mingw32_release/libs/openFrameworks/types"
+                "C:/Users/diego/Downloads/UPRM-Uni/of_v0.11.2_msys2_mingw32_release/of_v0.11.2_msys2_mingw32_release/libs/openFrameworks/types",
+                "C:/Users/diego/Downloads/UPRM-Uni/of_v0.11.2_msys2_mingw32_release/of_v0.11.2_msys2_mingw32_release/libs/openFrameworks/math",
+                "C:/Users/diego/Downloads/UPRM-Uni/of_v0.11.2_msys2_mingw32_release/of_v0.11.2_msys2_mingw32_release/libs/openFrameworks/graphics"
             ],
             "defines": [
                 "_DEBUG",

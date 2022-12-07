@@ -2,6 +2,7 @@
 
 #include <cmath>
 #include "Circle.hpp"
+#include "Tree.hpp"
 #include "SnowFlake.hpp"
 #include "ofMain.h"
 
@@ -12,6 +13,7 @@ class ofApp : public ofBaseApp {
     ofColor color;
     SnowFlake* snow;
     Circle* circle;
+    Tree* tree;
     // bool circle = false;
     bool fern = false;
     

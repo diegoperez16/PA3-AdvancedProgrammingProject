@@ -7,7 +7,7 @@ class AbstractFractal: public Fractal{
     protected: 
         float x; 
         float y; 
-        float angle = 0;
+        float angle = 0.0;
         int level;
         int colorXLevel;
         string name; 
@@ -35,7 +35,7 @@ class AbstractFractal: public Fractal{
 
         void  setAngle(float x3) {angle = x3;}
 
-        
+
         void  setX(float x2) {x = x2;}
         void  setY(float y2) { y = y2;}
         void  setLevel(int l) { level = l;}
