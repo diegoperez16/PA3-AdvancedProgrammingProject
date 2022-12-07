@@ -7,6 +7,7 @@ void ofApp::setup() {
     circle = new Circle("CIRCLE", (ofGetWidth() / 2), (ofGetHeight() / 2), 0, 0, 0.0);
     tree = new Tree("TREE", ofGetWidth() / 2, ofGetHeight() - 20, 0.0, 0, 0,  0.0 );
     t = new TriangleSier("TRIANGLE", 0.0, 0.0, 0, 0,0);
+    f = new Fern("FERN", 0.0,0.0,0,0);
     snow = new SnowFlake();
     currentNum = -1;
     color = colores[currentNum];
@@ -55,7 +56,7 @@ void ofApp::draw() {
     } break;
     case '4':
         // Barnsley Fern
-        drawMode4(0, 0, level * 1000, 0);
+        f->draw();
         break;
     case '5':{
         // Koch 
@@ -81,68 +82,6 @@ void ofApp::draw() {
 }
 
 
-
-
-// void ofApp::drawMode3(float x, float y, float size, int n, int max) {
-//     if (n == 0) {
-//         return;
-//     }
-
-//     ofPoint a(x, y);
-//     ofPoint b(x + size, y);
-//     ofPoint c(x + size / 2, y + ((sqrt(3) * size) / 2));
-
-    
-//      if(max < colores.size()){
-//         ofSetColor(colores[max]);
-//     }
-//     else{
-//         max = 0;
-//         ofSetColor(colores[max]);
-//     }
-//     ofDrawTriangle(a, b, c);
-//     ofSetColor(ofColor::white);
-
-//     drawMode3(x, y, size / 2, n - 1, max+1);
-//     drawMode3((a.x + b.x) / 2, (a.y + b.y) / 2, size / 2, n - 1, max+1);
-//     drawMode3((a.x + c.x) / 2, (a.y + c.y) / 2, size / 2, n - 1, max+1);
-// }
-
-void ofApp::drawMode4(float x, float y, float n, int max) {
-    if (n == 0) return;
-
-    float r = ofRandom(1);
-
-    float px = ofMap(x, -2.1820, 2.6558, 0, ofGetWidth());
-    float py = ofMap(y, 0, 9.9983, ofGetHeight(), 0);
-
-    
-    
-    ofFill();
-
-    if(max < colores.size()){
-        ofSetColor(colores[max]);
-    }
-    else{
-        max = 0;
-        ofSetColor(colores[max]);
-    }
-  
-    ofDrawCircle(px, py, 0.6);
-    ofSetColor(ofColor::white);
-
-    if (r < 0.01)
-        drawMode4(0, 0.16 * y, n - 1, max+1);
-
-    else if (r < 0.86)
-        drawMode4(0.85 * x + 0.04 * y, -0.04 * x + 0.85 * y + 1.6, n - 1, max+1);
-
-    else if (r < 0.93)
-        drawMode4(0.2 * x - 0.26 * y, 0.23 * x + 0.22 * y + 1.6, n - 1,max);
-
-    else
-        drawMode4(-0.15 * x + 0.28 * y, 0.26 * x + 0.24 * y + 0.44, n - 1,max);
-}
 
 void ofApp::drawMode6(float x, float y, float size) {
     if (size <= 15) {
@@ -190,8 +129,8 @@ void ofApp::keyPressed(int key) {
             }
         }
         else if(mode == '4'){
-            if(level < 50){
-                level++;
+            if(f->getLevel() < 50){
+                f->setLevel(f->getLevel() + 1);
             }
         }
         else if(mode == '2'){

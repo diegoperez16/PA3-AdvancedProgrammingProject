@@ -22,7 +22,8 @@
                 "C:/Users/diego/Downloads/UPRM-Uni/of_v0.11.2_msys2_mingw32_release/of_v0.11.2_msys2_mingw32_release/libs/openFrameworks/app",
                 "C:/Users/diego/Downloads/UPRM-Uni/of_v0.11.2_msys2_mingw32_release/of_v0.11.2_msys2_mingw32_release/libs/openFrameworks/3d",
                 "C:/msys64/mingw32/include/cairo",
-                "C:/Users/diego/Downloads/UPRM-Uni/of_v0.11.2_msys2_mingw32_release/of_v0.11.2_msys2_mingw32_release/libs/openFrameworks/sound"
+                "C:/Users/diego/Downloads/UPRM-Uni/of_v0.11.2_msys2_mingw32_release/of_v0.11.2_msys2_mingw32_release/libs/openFrameworks/sound",
+                "C:/Users/diego/Downloads/UPRM-Uni/of_v0.11.2_msys2_mingw32_release/of_v0.11.2_msys2_mingw32_release/libs/kiss/include"
             ],
             "defines": [
                 "_DEBUG",
