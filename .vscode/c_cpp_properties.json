@@ -23,7 +23,9 @@
                 "C:/Users/diego/Downloads/UPRM-Uni/of_v0.11.2_msys2_mingw32_release/of_v0.11.2_msys2_mingw32_release/libs/openFrameworks/3d",
                 "C:/msys64/mingw32/include/cairo",
                 "C:/Users/diego/Downloads/UPRM-Uni/of_v0.11.2_msys2_mingw32_release/of_v0.11.2_msys2_mingw32_release/libs/openFrameworks/sound",
-                "C:/Users/diego/Downloads/UPRM-Uni/of_v0.11.2_msys2_mingw32_release/of_v0.11.2_msys2_mingw32_release/libs/kiss/include"
+                "C:/Users/diego/Downloads/UPRM-Uni/of_v0.11.2_msys2_mingw32_release/of_v0.11.2_msys2_mingw32_release/libs/kiss/include",
+                "C:/Users/diego/Downloads/UPRM-Uni/of_v0.11.2_msys2_mingw32_release/of_v0.11.2_msys2_mingw32_release/libs/openFrameworks/video",
+                "C:/msys64/mingw32/include"
             ],
             "defines": [
                 "_DEBUG",
@@ -31,10 +33,10 @@
                 "_UNICODE"
             ],
             "windowsSdkVersion": "10.0.17763.0",
-            "compilerPath": "C:/msys64/mingw32/bin/g++.exe",
+            "compilerPath": "C:/msys64/usr/bin/gcc.exe",
             "cStandard": "c11",
             "cppStandard": "c++11",
-            "intelliSenseMode": "windows-gcc-x86"
+            "intelliSenseMode": "macos-gcc-x86"
         }
     ],
     "version": 4

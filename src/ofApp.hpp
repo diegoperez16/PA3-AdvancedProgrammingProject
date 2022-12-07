@@ -1,6 +1,7 @@
 #pragma once
 #include "Triangle.hpp"
 #include "Fern.hpp"
+#include "TetraCircle.hpp"
 #include <cmath>
 #include "Circle.hpp"
 #include "Tree.hpp"
@@ -17,6 +18,7 @@ class ofApp : public ofBaseApp {
     SnowFlake* snow;
     Circle* circle;
     Tree* tree;
+    Tetra* tetra;
     // bool circle = false;
     bool fern = false;
     
@@ -45,6 +47,6 @@ class ofApp : public ofBaseApp {
     void dragEvent(ofDragInfo dragInfo);
     void gotMessage(ofMessage msg);
 
-    void drawMode6(float x, float y, float size, int n);
+    void drawMode6(float x, float y, float size, int n, int max);
     
 };

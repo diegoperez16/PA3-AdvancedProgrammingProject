@@ -8,9 +8,8 @@ void ofApp::setup() {
     tree = new Tree("TREE", ofGetWidth() / 2, ofGetHeight() - 20, 0.0, 0, 0,  0.0 );
     t = new TriangleSier("TRIANGLE", 0.0, 0.0, 0, 0,0);
     f = new Fern("FERN", 0.0,0.0,0,0);
+    tetra = new Tetra("TRETRA CIRCLE", 0.0,0.0, 0,0);
     snow = new SnowFlake();
-    currentNum = -1;
-    color = colores[currentNum];
     // vector<ofColor> colores2(colores.begin(), colores.end());
     
 }
@@ -76,45 +75,25 @@ void ofApp::draw() {
 
 
     case '6':{
-        drawMode6(((ofGetWidth(
-
-        )) / 2), ofGetHeight() / 2 - 0.4 , 500, level);
-        break;}
+        ofDrawBitmapString("MODE: " + tetra->getName(), 50, 100);
+        tetra->draw();
     }
-}
+}}
 
-
-
-void ofApp::drawMode6(float x, float y, float size, int n) {
-    if ( n == 0) {
-        return;
-    }
-
-    ofDrawEllipse(x,y,size,size);
-    ofSetColor(ofColor::white);
-    drawMode6(x+size/2, y, size/2, n-1);
-    drawMode6(x,y+size/2,size/2, n-1);
-    drawMode6(x-size/2, y, size/2, n-1);
-    drawMode6(x,y-size/2,size/2,n-1);
-
-}
 //--------------------------------------------------------------
 
-int ofApp::getLevel(){
-    return level;
-}
+//PONER ESTO MAS LINDO:
 
-//--------------------------------------------------------------
 void ofApp::keyPressed(int key) {
 
     if (key >= '1' && key <= '6'){
-        level = 0;
         mode = key;}
     
     else if (key == OF_KEY_F11)
         ofSetFullscreen(fullscreen++ % 2 == 0);
     else if (key == OF_KEY_ESC)
         ofSetFullscreen(false);
+
     if(key== OF_KEY_RIGHT){
         if(mode == '5'){
             if(snow->getSnowL() < 8){
@@ -125,8 +104,6 @@ void ofApp::keyPressed(int key) {
         if(mode == '1')
         {
             if(circle->getLevel() < 5){
-                currentNum++;
-                color = colores[currentNum];
                 circle->setLevel(circle->getLevel() + 1);
             }
         }
@@ -146,26 +123,23 @@ void ofApp::keyPressed(int key) {
             }
         }
         else if(mode == '6'){
-            level = level + 1;
-        }
-        // else if(mode != '4' && mode != '2' && mode != '1' && mode != '5'){
-        //     currentNum++;
-        //     color = colores[currentNum];
-        //     level++;}
+            if(tetra->getLevel() < 10){
+                tetra->setLevel(tetra->getLevel() + 1);
+            }
+        }}
     }
     if(key== OF_KEY_LEFT){
-        if(level > 0){
-            
-            }
         if(mode == '5' && snow->getSnowL() > 1){
             snow->setSnowL(snow->getSnowL()-1);
             }
         else if(mode == '6'){
-            level--;
+            if(tetra->getLevel() > 0){
+                tetra->setLevel(tetra->getLevel() - 1);
+            }
         }
 
-    }
 }
+
 
 
 //--------------------------------------------------------------
