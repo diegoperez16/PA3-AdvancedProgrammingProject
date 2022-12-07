@@ -50,8 +50,7 @@ void ofApp::draw() {
         
         float length = 0.31 * ofGetHeight();
         drawMode2(ofGetWidth() / 2, ofGetHeight() - 20, level, length, 1.5 * PI, 0);
-        drawMode2((ofGetWidth() / 2) + 400, ofGetHeight() - 20
-        , level, length/4, 1.5 * PI, 0);
+        drawMode2((ofGetWidth() / 2) + 400, ofGetHeight() - 20, level, length/4, 1.5 * PI, 0);
         drawMode2((ofGetWidth() / 2) - 400, ofGetHeight() - 20, level, length/4, 1.5 * PI, 0);
     } break;
     case '3': {
@@ -59,12 +58,12 @@ void ofApp::draw() {
         float size = 0.88 * ofGetHeight();
         drawMode3((ofGetWidth() - size) / 2, ofGetHeight() / 2 - 0.4 * size, size, level, 0);
     } break;
-    case '4':
+    case '4':{
         // Barnsley Fern
 
         drawMode4(0, 0, level * 1000, 0);
-        break;
-    case '5':
+    }    break;
+    case '5': {
         // Koch 
         
         
@@ -80,15 +79,25 @@ void ofApp::draw() {
         snow->drawICE(snow->getSnowL(), new SnowFlake(p1, p2));   
         snow->drawICE(snow->getSnowL(), new SnowFlake(p2, p3));
         snow->drawICE(snow->getSnowL(), new SnowFlake(p3, p1));
-        break;
-    case '6':
+    } break;
+    case '6': {
+
+
+        float length = 0.31 * ofGetHeight();
+        drawMode2(ofGetWidth() / 2, ofGetHeight() - 20, level, length, 1.5 * PI, 0);
+        drawMode2((ofGetWidth() / 2) + 400, ofGetHeight() - 20, level, length/4, 1.5 * PI, 0);
+        drawMode2((ofGetWidth() / 2) - 400, ofGetHeight() - 20, level, length/4, 1.5 * PI, 0);
         //new fractal: 
-        float size = 0.88 * ofGetHeight();
-        drawMode6((ofGetWidth() - size) / 2, ofGetHeight() / 2 - 0.4 * size, size, level, 0);
-        break; 
+        // float size = 0.88 * ofGetHeight();
+        // drawMode6((ofGetWidth() - size) / 2, ofGetHeight() / 2 - 0.4 * size, size, level, 0);
+
+        //float length = 0.31 * ofGetHeight();
+        //drawMode6(ofGetWidth() / 2, ofGetHeight() - 20, level, length, 10);
+        // drawMode6((ofGetWidth() / 2) + 400, ofGetHeight() - 20, level, length/4, 0);
+        // drawMode6((ofGetWidth() / 2) - 400, ofGetHeight() - 20, level, length/4, 0);
+    } break; 
     }
 }
-
 void ofApp::drawMode1(float x, float y, float r, int n, int max) {
     if (n == 0) return;
 
@@ -209,17 +218,13 @@ void ofApp::drawMode4(float x, float y, float n, int max) {
     else
         drawMode4(-0.15 * x + 0.28 * y, 0.26 * x + 0.24 * y + 0.44, n - 1,max);
 }
-//Draws the sierpinski carpet
-void ofApp::drawMode6(float x, float y, float size, int n, int max) {
-    if (n == 0) {
-        return;
-    }
 
-    ofPoint a(x, y);
-    ofPoint b(x + size, y);
-    ofPoint c(x, y + size); 
-    ofPoint d( x + size, y +size); 
-    // ofPoint c(x + size / 2, y + ((sqrt(3) * size) / 2));
+//Draws the sierpinski carpet
+void ofApp::drawMode6(float x, float y, int n, float length, float rad, int max) {
+   /* if (n == 0) return;
+
+    // float x2 = x + length * sin(rad);
+    // float y2 = y + length * cos(rad);
 
     
     if(max < colores.size()){
@@ -229,10 +234,65 @@ void ofApp::drawMode6(float x, float y, float size, int n, int max) {
         max = 0;
         ofSetColor(colores[max]);
     }
-    ofDrawRectangle(x,y,size,size);
+    ofDrawRectangle(x - size, y -size, x + size, y + size);
+    ofSetColor(ofColor::white);
+    
+    if (n > 0){
+        drawMode6(x - size, y - size, size /2, n - 1, max + 1);
+        drawMode6(x + size, y - size, size /2, n - 1, max + 1);
+        drawMode6(x + size, y + size, size /2, n - 1, max + 1);
+        drawMode6(x - size, y + size, size /2, n - 1, max + 1);
+    }
+    
+    // if (n == 0) {
+    //     return;
+    // }
+
+    // ofPoint a(x, y);
+    // ofPoint b(x + size, y);
+    // ofPoint c(x, y + size); 
+    // ofPoint d( x + size, y +size); 
+    // // ofPoint c(x + size / 2, y + ((sqrt(3) * size) / 2));
+
+    
+    // // if(max < colores.size()){
+    // //     ofSetColor(colores[max]);
+    // // }
+    // // else{
+    // //     max = 0;
+    // //     ofSetColor(colores[max]);
+    // // }
+    // ofDrawRectangle(x,y,size,size);
+    // ofSetColor(ofColor::white);
+
+    // drawMode6(x + size/3, y + size/3, size/3, n - 1, max +1);*/
+
+     if (n == 0) return;
+
+    float x2 = x + length * cos(rad);
+    float y2 = y + length * sin(rad);
+
+    // float x3 = x + length * cos(rad);
+    // float y3 = y + length * sin(rad);
+
+    
+     if(max < colores.size()){
+        ofSetColor(colores[max]);
+    }
+    else{
+        max = 0;
+        ofSetColor(colores[max]);
+    }
+    ofDrawLine(x, y, x2, y2);
     ofSetColor(ofColor::white);
 
-    drawMode6(x + size/3, y + size/3, size/3, n - 1, max +1);
+    // ofDrawLine(x + 600, y + 150, x3 + 600 , y3 + 150);
+
+    drawMode2(x2, y2, n - 1, 0.7 * length, rad + 0.2 * PI, max + 1);
+    drawMode2(x2, y2, n - 1,  0.7 * length, rad - 0.2 * PI, max + 1);
+
+    // drawMode2(x3 + 600, y3 + 150, n - 1, (0.7 * length)/2, (rad + 0.2 * PI)/2);
+    // drawMode2(x3 + 600, y3  + 150, n - 1,  (0.7* length)/2, (rad - 0.2 * PI)/2);
     
 }
 
