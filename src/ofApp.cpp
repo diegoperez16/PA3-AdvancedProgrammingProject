@@ -5,7 +5,7 @@ void ofApp::setup() {
     ofSetEscapeQuitsApp(false);
     fullscreen = 0;
     circle_in_vector = false;
-    circle = new Circle("CIRCLE", (ofGetWidth() / 2), (ofGetHeight() / 2), 0, 1, 0.0);
+    circle = new Circle("CIRCLE", (ofGetWidth() / 2), (ofGetHeight() / 2), 1, 0, 0.0);
     tree = new Tree("TREE", ofGetWidth() / 2, ofGetHeight() - 20, 1, 0, 0,  0.0 );
     t = new TriangleSier("TRIANGLE", 0.0, 0.0, 1, 0,0);
     f = new Fern("FERN", 0.0,0.0,1,0);
@@ -37,22 +37,37 @@ void ofApp::draw() {
     
 
 
-    if(mode <= '5'){
-    ofDrawBitmapString("LEVEL OF FRACTALIZATION: " + ofToString(level), 50, 150);
-    ofDrawBitmapString("Color " + ofToString(color), 50, 200);
-    snow->drawICE();}
+    if(mode == '5'){
+
+        // Koch 
+
+        ofDrawBitmapString("NAME OF FRACTAL: SNOWFLAKE", 50, 100);
+        ofDrawBitmapString("LEVEL OF FRACTALIZATION: " + ofToString(snow->getSnowL()), 50, 150);
+
+
+        float size = 0.74 * ofGetHeight();
+
+        glm::vec2 p1 = {(ofGetWidth() - size) / 2, (ofGetHeight() - size * sin(PI / 3)) / 2 + 0.15 * size};
+        glm::vec2 p2 = {(ofGetWidth() + size) / 2, (ofGetHeight() - size * sin(PI / 3)) / 2 + 0.15 * size};
+        glm::vec2 p3 = {ofGetWidth() / 2, (ofGetHeight() + size * sin(PI / 3)) / 2 + 0.15 * size};
+
+
+        snow->drawICE(snow->getSnowL(), new SnowFlake(p1, p2));   
+        snow->drawICE(snow->getSnowL(), new SnowFlake(p2, p3));
+        snow->drawICE(snow->getSnowL(), new SnowFlake(p3, p1));}
     
     // ofDrawBitmapString("NAME OF FRACTAL IN VECTOR : " + ofToString(fractals[fpos]->getName()), 50, 300);
     
     ofNoFill();
     for(int i = 0; i<fractals.size(); i++){
-        if(i+1 == int(mode)-48){
+        if(i+1 == int(mode)-48 && mode != '5'){
             ofDrawBitmapString("NAME OF FRACTAL: " + ofToString(fractals[i]->getName()), 50, 100);
             ofDrawBitmapString("LEVEL OF FRACTALIZATION: " + ofToString(fractals[i]->getLevel()), 50, 150);
             fractals[i]->draw();
         }
         else if(i+1 == 5 && mode == '6'){
-            ofDrawBitmapString("NAME OF FRACTAL IN VECTOR : " + ofToString(fractals[i]->getName()), 50, 300);
+            ofDrawBitmapString("NAME OF FRACTAL IN VECTOR : " + ofToString(fractals[i]->getName()), 50, 100);
+            ofDrawBitmapString("LEVEL OF FRACTALIZATION: " + ofToString(fractals[i]->getLevel()), 50, 150);
             fractals[i]->draw();
         }
     }
