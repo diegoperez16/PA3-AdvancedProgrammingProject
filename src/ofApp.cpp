@@ -10,7 +10,6 @@ void ofApp::setup() {
     f = new Fern("FERN", 0.0,0.0,1,0);
     tetra = new Tetra("TRETRA CIRCLE", 0.0,0.0, 1,0);
     snow = new SnowFlake();
-    // vector<ofColor> colores2(colores.begin(), colores.end());
     
 }
 
@@ -108,7 +107,7 @@ void ofApp::keyPressed(int key) {
             }
         }
         else if(mode == '4'){
-            if(f->getLevel() < 50){
+            if(f->getLevel() < 1500){
                 f->setLevel(f->getLevel() + 1);
             }
         }
