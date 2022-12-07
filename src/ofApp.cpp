@@ -29,11 +29,8 @@ void ofApp::draw() {
     else{
     ofBackgroundGradient(ofColor(ofColor::black), ofColor(ofColor::darkSlateBlue), OF_GRADIENT_LINEAR);
     }
-
    
-    ofDrawBitmapString("MODE: " + circle->getName(), 50, 100);
-   
-    if(mode < '5'){
+    if(mode <= '6'){
     ofDrawBitmapString("LEVEL OF FRACTALIZATION: " + ofToString(level), 50, 150);
     ofDrawBitmapString("Color " + ofToString(color), 50, 200);}
     else if(mode == '5'){
@@ -44,25 +41,26 @@ void ofApp::draw() {
     switch (mode) {
     case '1': {
         // Circle
+        ofDrawBitmapString("MODE: " + circle->getName(), 50, 100);
         circle->draw();
     } break;
     case '2': {
         // Tree
+        ofDrawBitmapString("MODE: " + tree->getName(), 50, 100);
         tree->draw();
     } break;
     case '3': {
         // Sierpinski Triangle
+        ofDrawBitmapString("MODE: " + t->getName(), 50, 100);
         t->draw();
     } break;
     case '4':
         // Barnsley Fern
+        ofDrawBitmapString("MODE: " + f->getName(), 50, 100);
         f->draw();
         break;
     case '5':{
         // Koch 
-        
-        
-        // SnowFlake().draw();
 
         float size = 0.74 * ofGetHeight();
 
@@ -75,25 +73,29 @@ void ofApp::draw() {
         snow->drawICE(snow->getSnowL(), new SnowFlake(p2, p3));
         snow->drawICE(snow->getSnowL(), new SnowFlake(p3, p1));
     }break;
+
+
     case '6':{
-        drawMode6(((ofGetWidth()) / 2), ofGetHeight() / 2 - 0.4 , 300);
+        drawMode6(((ofGetWidth(
+
+        )) / 2), ofGetHeight() / 2 - 0.4 , 500, level);
         break;}
     }
 }
 
 
 
-void ofApp::drawMode6(float x, float y, float size) {
-    if (size <= 15) {
+void ofApp::drawMode6(float x, float y, float size, int n) {
+    if ( n == 0) {
         return;
     }
 
     ofDrawEllipse(x,y,size,size);
     ofSetColor(ofColor::white);
-    drawMode6(x+size/2, y, size/2);
-    drawMode6(x,y+size/2,size/2);
-    drawMode6(x-size/2, y, size/2);
-    drawMode6(x,y-size/2,size/2);
+    drawMode6(x+size/2, y, size/2, n-1);
+    drawMode6(x,y+size/2,size/2, n-1);
+    drawMode6(x-size/2, y, size/2, n-1);
+    drawMode6(x,y-size/2,size/2,n-1);
 
 }
 //--------------------------------------------------------------
@@ -143,20 +145,25 @@ void ofApp::keyPressed(int key) {
                 t->setLevel(t->getLevel() + 1);
             }
         }
-        else if(mode != '4' && mode != '2' && mode != '1' && level < 10 && mode != '5'){
-            currentNum++;
-            color = colores[currentNum];
-            level++;}
+        else if(mode == '6'){
+            level = level + 1;
+        }
+        // else if(mode != '4' && mode != '2' && mode != '1' && mode != '5'){
+        //     currentNum++;
+        //     color = colores[currentNum];
+        //     level++;}
     }
     if(key== OF_KEY_LEFT){
         if(level > 0){
-            currentNum--;
-            color = colores[currentNum];
-            level--;
+            
             }
         if(mode == '5' && snow->getSnowL() > 1){
             snow->setSnowL(snow->getSnowL()-1);
             }
+        else if(mode == '6'){
+            level--;
+        }
+
     }
 }
 

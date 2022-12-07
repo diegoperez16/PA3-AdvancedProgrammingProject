@@ -45,10 +45,6 @@ class ofApp : public ofBaseApp {
     void dragEvent(ofDragInfo dragInfo);
     void gotMessage(ofMessage msg);
 
-    void drawMode1(float x, float y, float r, int n, int max);
-    void drawMode2(float x, float y, int n, float length, float rad, int max);
-    void drawMode3(float x, float y, float size, int n, int max);
-    void drawMode4(float x, float y, float n, int max);
-    void drawMode6(float x, float y, float size);
+    void drawMode6(float x, float y, float size, int n);
     
 };
