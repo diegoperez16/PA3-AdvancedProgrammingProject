@@ -3,9 +3,9 @@
 
 void Circle::draw(){
     float r = 0.31 * ofGetHeight();
-    angle += 0.01;
+    this->angle += 0.01;
        
-    drawFractal(ofGetWidth() / 2, ofGetHeight() / 2, r, level, 0);
+    drawFractal(ofGetWidth() / 2, ofGetHeight() / 2, r, this->level, 0);
 }
 
 void Circle::drawFractal(float x, float y, float r, int n, int max){

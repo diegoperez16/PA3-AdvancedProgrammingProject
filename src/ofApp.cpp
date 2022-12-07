@@ -42,10 +42,7 @@ void ofApp::draw() {
     case '1': {
         // Circle
         
-        float r = 0.31 * ofGetHeight();
-        angle += 0.01;
-       
-        drawMode1(ofGetWidth() / 2, ofGetHeight() / 2, r, level, 0);
+        circle->draw();
         
     } break;
     case '2': {
@@ -67,7 +64,7 @@ void ofApp::draw() {
 
         drawMode4(0, 0, level * 1000, 0);
         break;
-    case '5':
+    case '5':{
         // Koch 
         
         
@@ -83,41 +80,44 @@ void ofApp::draw() {
         snow->drawICE(snow->getSnowL(), new SnowFlake(p1, p2));   
         snow->drawICE(snow->getSnowL(), new SnowFlake(p2, p3));
         snow->drawICE(snow->getSnowL(), new SnowFlake(p3, p1));
-        break;
+    }break;
+    case '6':{
+        drawMode6(((ofGetWidth()) / 2), ofGetHeight() / 2 - 0.4 , 300);
+        break;}
     }
 }
 
-void ofApp::drawMode1(float x, float y, float r, int n, int max) {
-    if (n == 0) return;
+// void ofApp::drawMode1(float x, float y, float r, int n, int max) {
+//     if (n == 0) return;
 
-    int delta = r * 0.35;
+//     int delta = r * 0.35;
 
     
-    if(max < colores.size()){
-        ofSetColor(colores[max]);
-    }
-    else{
-        max = 0;
-        ofSetColor(colores[max]);
-    }
-    ofDrawCircle(x, y, r);
-    ofSetColor(ofColor::white);
+//     if(max < colores.size()){
+//         ofSetColor(colores[max]);
+//     }
+//     else{
+//         max = 0;
+//         ofSetColor(colores[max]);
+//     }
+//     ofDrawCircle(x, y, r);
+//     ofSetColor(ofColor::white);
 
 
 
-    float angle1 = angle;
-    float angle2 = PI / 3 + angle;
-    float angle3 = PI + angle;
-    float angle4 = 2 * PI / 3 + angle;
-    float angle5 = 4 * PI / 3 + angle;
-    float angle6 = 5 * PI / 3 + angle;
-    drawMode1(x + r * cos(angle1), y + r * sin(angle1), delta, n - 1, max + 1);
-    drawMode1(x + r * cos(angle2), y + r * sin(angle2), delta, n - 1, max + 1);
-    drawMode1(x + r * cos(angle3), y + r * sin(angle3), delta, n - 1, max + 1 );
-    drawMode1(x + r * cos(angle4), y + r * sin(angle4), delta, n - 1, max + 1);
-    drawMode1(x + r * cos(angle5), y + r * sin(angle5), delta, n - 1, max + 1);
-    drawMode1(x + r * cos(angle6), y + r * sin(angle6), delta, n - 1, max +1);
-}
+//     float angle1 = angle;
+//     float angle2 = PI / 3 + angle;
+//     float angle3 = PI + angle;
+//     float angle4 = 2 * PI / 3 + angle;
+//     float angle5 = 4 * PI / 3 + angle;
+//     float angle6 = 5 * PI / 3 + angle;
+//     drawMode1(x + r * cos(angle1), y + r * sin(angle1), delta, n - 1, max + 1);
+//     drawMode1(x + r * cos(angle2), y + r * sin(angle2), delta, n - 1, max + 1);
+//     drawMode1(x + r * cos(angle3), y + r * sin(angle3), delta, n - 1, max + 1 );
+//     drawMode1(x + r * cos(angle4), y + r * sin(angle4), delta, n - 1, max + 1);
+//     drawMode1(x + r * cos(angle5), y + r * sin(angle5), delta, n - 1, max + 1);
+//     drawMode1(x + r * cos(angle6), y + r * sin(angle6), delta, n - 1, max +1);
+// }
 
 void ofApp::drawMode2(float x, float y, int n, float length, float rad, int max) {
     if (n == 0) return;
@@ -208,6 +208,20 @@ void ofApp::drawMode4(float x, float y, float n, int max) {
     else
         drawMode4(-0.15 * x + 0.28 * y, 0.26 * x + 0.24 * y + 0.44, n - 1,max);
 }
+
+void ofApp::drawMode6(float x, float y, float size) {
+    if (size <= 15) {
+        return;
+    }
+
+    ofDrawEllipse(x,y,size,size);
+    ofSetColor(ofColor::white);
+    drawMode6(x+size/2, y, size/2);
+    drawMode6(x,y+size/2,size/2);
+    drawMode6(x-size/2, y, size/2);
+    drawMode6(x,y-size/2,size/2);
+
+}
 //--------------------------------------------------------------
 
 int ofApp::getLevel(){
@@ -217,7 +231,7 @@ int ofApp::getLevel(){
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key) {
 
-    if (key >= '1' && key <= '5'){
+    if (key >= '1' && key <= '6'){
         level = 0;
         mode = key;}
     
@@ -234,10 +248,10 @@ void ofApp::keyPressed(int key) {
         }
         if(mode == '1')
         {
-            if(level < 5){
+            if(circle->getLevel() < 5){
                 currentNum++;
                 color = colores[currentNum];
-                level++;
+                circle->setLevel(circle->getLevel() + 1);
             }
         }
         else if(mode == '4'){
