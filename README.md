@@ -10,7 +10,7 @@ The purpose of this project is to help the student create practical programming 
 
 <h3>How to use</h3>
 
-<p><b><i>USE THE MAIN BRANCH</b></i></p>
+<p><b><i>USE THE MASTER BRANCH</b></i></p>
 
 <b>Phase 1 Explanation</b>
 <p>+ Levels: Pressing <code>"Left arrow"</code> decreases the depth of recursion and <code>"Right arrow"</code> increases the depth of recursion. <i>(Partner A)</i></p>
