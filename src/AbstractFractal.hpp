@@ -15,6 +15,7 @@ class AbstractFractal: public Fractal{
 
 
     public: 
+        AbstractFractal(){};
         ~AbstractFractal(); 
         vector<ofColor> colores2{ ofColor::red, ofColor::blue, ofColor:: green, ofColor:: yellow, ofColor::white, ofColor::pink, ofColor::orange, ofColor::aqua, ofColor::purple, ofColor::teal};
         AbstractFractal(string name1, float x1, float y1, int level1, int dephColor) {

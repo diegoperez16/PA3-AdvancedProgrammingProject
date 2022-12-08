@@ -31,17 +31,20 @@ void ofApp::draw() {
     if(animation == true){
             ofDrawBitmapString("ANIMATION: ON ", 50, 250);
 
-            int timer = 600;
-            while(timer <= 600 && timer > 0){
-                timer--;
+            int timer = 0;
+            while(timer <= 10000 && timer > 0){
+                timer++;
             }
-            if(timer == 0){
+            if(timer == 10000){
                 for(int i = 0; i<fractals.size(); i++){
                     if(i+1 == int(mode)-48 && mode != '5'){
                         if(fractals[i]->getLevel() < fractals[i]->getColorMAX()){
                             fractals[i]->setLevel(fractals[i]->getLevel() + 1);}
                         else if(fractals[i]->getLevel() == fractals[i]->getColorMAX()){
-                            fractals[i]->setLevel(fractals[i]->getLevel() - 1);
+                            for(int j = 0; j < fractals[i]->getColorMAX(); j++){
+                                fractals[i]->setLevel(fractals[i]->getLevel() - 1);
+                            }
+                            break;
                         }
                     }
                     else if(i+1 == 5 && mode == '6'){
@@ -52,7 +55,7 @@ void ofApp::draw() {
                         }
                     }
                 }
-                timer = 30;
+                timer = 0;
             }
         }
     else if(animation == false){
