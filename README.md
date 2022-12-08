@@ -23,7 +23,7 @@ The purpose of this project is to help the student create practical programming 
 <p>+ Complete Sierpinski: Completed the Sierpinski's triangle fractal. Now it contains three recursive calls instead of two. <i>(Partner B)</i></p>
 
 <b>Phase 3 Explanation</b>
-<p>+ Refractor Fractals: Each one of the fractals was transformed into a subclass of AbstractFractal.A polymorphic vector was created as an attribute to ofApp class. Additionally, the name of the fractak aooears at the top-left corner on the screen. <i>(Partner A)</i></p>
+<p>+ Refractor Fractals: Each one of the fractals was transformed into a subclass of AbstractFractal.A polymorphic vector was created as an attribute to ofApp class. Additionally, the name of the fractal appears at the top-left corner on the screen. <i>(Partner A)</i></p>
 <p>+New Fractal: This new fractal is inspired by a tetra fractal, but we call it tetra circle. <i>(Partner A)</i></p>
 <p>+ Animation: Pressing <code>"Space bar"</code> will activate the animation by settting the recursion level to 1.Then it will increase the levels of recursion of the fractal level by level slowly until it completes the fractal. You can cancel the animation by pressing the <code>"Space bar"</code> again.<i>(Partner A)</i></p>
 
