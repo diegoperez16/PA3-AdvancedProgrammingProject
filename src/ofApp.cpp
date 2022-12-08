@@ -57,7 +57,7 @@ void ofApp::draw() {
         ofDrawBitmapString("ANIMATION: OFF ", 50, 50);
     }
     
-    ofNoFill();
+    // ofNoFill();
     for(int i = 0; i<fractals.size(); i++){
         if(i+1 == int(mode)-48){
             ofDrawBitmapString("NAME OF FRACTAL: " + ofToString(fractals[i]->getName()), 50, 100);
@@ -98,6 +98,14 @@ void ofApp::keyPressed(int key) {
             if(i+1 == int(mode)-48){
                 if(fractals[i]->getLevel() > 1)
                     fractals[i]->setLevel(fractals[i]->getLevel() - 1);
+            }
+        }   
+    }
+    if(key== OF_KEY_UP){
+
+        for(int i = 0; i<fractals.size(); i++){
+            if(i+1 == int(mode)-48){
+                fractals[i]->setAngle(fractals[i]->getAngle() + 0.1);
             }
         }   
     }

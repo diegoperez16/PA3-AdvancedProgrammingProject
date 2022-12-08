@@ -7,6 +7,7 @@
 
 class Tree: public AbstractFractal {
     private: 
+
   public:
     Tree(string name1, int level1, int dephColor) : AbstractFractal(name1,level1, dephColor){
     };

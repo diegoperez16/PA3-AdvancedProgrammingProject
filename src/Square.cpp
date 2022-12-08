@@ -9,6 +9,7 @@ void Square::drawFractal(float x, float y, float length, int n, int max){
 
     if (n == 0) return;
 
+
     if(max < colores2.size()){
         ofSetColor(colores2[max]);
     }

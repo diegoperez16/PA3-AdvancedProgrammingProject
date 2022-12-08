@@ -10,6 +10,8 @@ class AbstractFractal: public Fractal{
         string name; 
         float animation_level = 1;
         int timer = 1;
+        float changeAngle = 0.2;
+        
 
 
 
@@ -24,6 +26,9 @@ class AbstractFractal: public Fractal{
         string getName () {return name;} 
         int getLevel () {return level;} 
         float getAnimationL(){return animation_level;}
+        float getAngle() { return changeAngle;}
+
+        float setAngle(float change){ changeAngle = change;}
 
         void  setLevel(int l) { 
             if(l < 1){l = 1;

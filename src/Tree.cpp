@@ -26,8 +26,8 @@ void Tree::drawFractal(float x, float y, float rad, int n, int max, float length
     ofSetColor(ofColor::white);
 
 
-    drawFractal(x2, y2, rad + 0.2 * PI, n-1 , max+1, 0.7 * length);
-    drawFractal(x2, y2, rad - 0.2 * PI,  n-1, max+1, 0.7 * length);
+    drawFractal(x2, y2, rad + this->changeAngle * PI, n-1 , max+1, 0.7 * length);
+    drawFractal(x2, y2, rad - this->changeAngle * PI,  n-1, max+1, 0.7 * length);
 
 
 }
