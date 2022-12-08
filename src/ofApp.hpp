@@ -1,4 +1,6 @@
 #pragma once
+
+
 #include "AbstractFractal.hpp"
 #include "Triangle.hpp"
 #include "Fern.hpp"
@@ -8,6 +10,8 @@
 #include "Tree.hpp"
 #include "SnowFlake.hpp"
 #include "Square.hpp"
+#include "Ellipse.hpp"
+
 
 #include "ofMain.h"
 
@@ -21,6 +25,7 @@ class ofApp : public ofBaseApp {
     Circle* circle;
     Tree* tree;
     Tetra* tetra;
+    Elip* el;
 
     char mode = '1';
     unsigned int fullscreen;

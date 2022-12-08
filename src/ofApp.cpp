@@ -12,6 +12,7 @@ void ofApp::setup() {
     tetra = new Tetra("TRETRA CIRCLE", 1, 10);
     snow = new SnowFlake("SNOWFLAKE",1,7);
     square = new Square("SQUARE", 1, 10);
+    el = new Elip("ELLIPSE", 1, 10);
 
     fractals.push_back(circle);
     fractals.push_back(tree);
@@ -20,6 +21,7 @@ void ofApp::setup() {
     fractals.push_back(snow);
     fractals.push_back(tetra);
     fractals.push_back(square);
+    fractals.push_back(el);
     
 }
 
@@ -48,7 +50,13 @@ void ofApp::draw() {
     }
     
 
-
+    if(animation == true){
+        ofDrawBitmapString("ANIMATION: ON ", 50, 50);
+    }
+    else{
+        ofDrawBitmapString("ANIMATION: OFF ", 50, 50);
+    }
+    
     ofNoFill();
     for(int i = 0; i<fractals.size(); i++){
         if(i+1 == int(mode)-48){
@@ -56,7 +64,6 @@ void ofApp::draw() {
             ofDrawBitmapString("LEVEL OF FRACTALIZATION: " + ofToString(fractals[i]->getLevel()), 50, 150);
             if(animation == true){
                 dynamic_cast<AbstractFractal*>(fractals[i])->setLevel(dynamic_cast<AbstractFractal*>(fractals[i])->getAnimationL());}
-            
             fractals[i]->draw();
         }
     }
@@ -67,7 +74,7 @@ void ofApp::draw() {
 
 void ofApp::keyPressed(int key) {
 
-    if (key >= '1' && key <= '7'){
+    if (key >= '1' && key <= '8'){
         mode = key;}
     
     else if (key == OF_KEY_F11)
