@@ -87,6 +87,13 @@ void ofApp::draw() {
         drawMode6(ofGetWidth() / 2, ofGetHeight() / 2,ofGetHeight() * 0.5 / 2.0 , level, 0);
         
     } break; 
+    case '7': {
+        //New Fractal 2
+        // ofDrawEllipse(x,y,level,150,10);
+        // ofDrawEllipse(x,y,100,150); 
+        drawMode7(ofGetWidth() / 2, ofGetHeight() / 2, level,0); 
+    
+    } break;
     }
 }
 void ofApp::drawMode1(float x, float y, float r, int n, int max) {
@@ -236,6 +243,30 @@ void ofApp::drawMode6(float x, float y, float length, int n, int max) {
     drawMode6(x + length, y + length, length /2, n - 1, max + 1);
 }
 
+void ofApp::drawMode7(float x, float y, int n, int max) {
+    if (n == 0) return;
+
+    if(max < colores.size()){
+        ofSetColor(colores[max]);
+    }
+    else{
+        max = 0;
+        ofSetColor(colores[max]);
+    }
+    
+    ofDrawEllipse(x,y,level,150,100);
+    ofDrawEllipse(x,y,level,100,150); 
+    ofSetColor(ofColor::white);
+    
+  
+    drawMode7(x + 75, y, n - 1, max + 1);
+    drawMode7(x - 75, y, n - 1, max + 1);
+    drawMode7(x, y + 75, n - 1, max + 1);
+    drawMode7(x, y - 75, n - 1, max + 1);
+    
+
+}
+
 //--------------------------------------------------------------
 
 int ofApp::getLevel(){
@@ -245,7 +276,7 @@ int ofApp::getLevel(){
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key) {
 
-    if (key >= '1' && key <= '6'){
+    if (key >= '1' && key <= '7'){
         level = 0;
         mode = key;}
     
