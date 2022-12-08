@@ -9,8 +9,7 @@ void ofApp::setup() {
     t = new TriangleSier("TRIANGLE", 0.0, 0.0, 1, 0,0);
     f = new Fern("FERN", 0.0,0.0,0,0);
     tetra = new Tetra("TRETRA CIRCLE", 0.0,0.0, 1,0);
-    snow = new SnowFlake("SNOWFLAKE", 0.0, 0.0 ,0,0 , snow->getStart(), snow->getEnd());
-    // vector<ofColor> colores2(colores.begin(), colores.end());
+    snow = new SnowFlake("SNOWFLAKE", 0.0, 0.0 ,1,0);
     
 }
 
@@ -33,7 +32,8 @@ void ofApp::draw() {
     ofDrawBitmapString("LEVEL OF FRACTALIZATION: " + ofToString(level), 50, 150);
     ofDrawBitmapString("Color " + ofToString(color), 50, 200);}
     else if(mode == '5'){
-    ofDrawBitmapString("LEVEL OF FRACTALIZATION SNOWFLAKE: " + ofToString(snow->getLevel()), 50, 150);}
+    ofDrawBitmapString("LEVEL OF FRACTALIZATION SNOWFLAKE: " + ofToString(snow->getLevel()), 50, 150);
+    }
     
 
     ofNoFill();
@@ -61,6 +61,7 @@ void ofApp::draw() {
     case '5':{
         // Koch 
 
+        snow->draw();
 
     }break;
 

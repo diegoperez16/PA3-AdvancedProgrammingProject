@@ -19,8 +19,9 @@ class SnowFlake : public AbstractFractal{
 
   public:
    
-    // SnowFlake();
-    SnowFlake(string name1, float x1, float y1, int level1, int dephColor, glm::vec2 start, glm::vec2 end)  : AbstractFractal(name1, x1, y1, level1, dephColor){
+
+    SnowFlake(string name1, float x1, float y1, int level1, int depthColor) : AbstractFractal(name1, x1, y1, level1, depthColor){}
+    SnowFlake(glm::vec2 start, glm::vec2 end)  : AbstractFractal(){
       this->start = start;
       this->end = end;
     }
