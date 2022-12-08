@@ -1,23 +1,38 @@
-# PA3: Fractals
- This repository is part of a Programming Assignment for the Advanced Programming Course.
+# PA3: Fractals Diego-Glorián
+This project is based on openFrameworks.
+This repository is part of a Programming Assignment for the Advanced Programming Course ICOM4015/CIIC4010.
+The purpose of this project is to help the student create practical programming skills by implementing changes to the base code that require strong understanding of the concepts discussed in class such as the creation and implementation of abstract classes, and recursion.
+
 
 ## Setup
 1. Clone this project inside an OpenFrameworks installation's "apps/myApps/" directory
 2. Build & Run the project
 
-## Submitting Assignment
-To submit this assignment, create a Release with the branch that holds all the changes you have added. If no Release is made, the last commit to the master branch will be graded.
+<h3>How to use</h3>
 
-Don't forget that you must also fill out an evaluation form in Moodle to consider the project submitted.
+<p><b><i>USE THE MASTER BRANCH</b></i></p>
 
-## Grading
+<b>Phase 1 Explanation</b>
+<p>+ Levels: Pressing <code>"Left arrow"</code> decreases the depth of recursion and <code>"Right arrow"</code> increases the depth of recursion. <i>(Partner A)</i></p>
+<p>+ Coloring Levels: Each level of recursion have a different color. <i>(Partner A)</i> </p>
 
-Student A (Name AND Email):
-Student B (Name AND Email):
+<b>Phase 2 Explanation</b>
+<p>+ Fractal: Creation of an interface called Factal. <i>(Partner B)</i> </p>
+<p>+ Abstract Fractal: Creation of an abstract class called AbstractFractal. <i>(Partner B)</i></p>
+<p>+ Edit Tree Fractal: Added two more Tree fractals that are half the size of the larger existing one. They will not touch. <i>(Partner A & B)</i></p>
+<p>+ Complete Sierpinski: Completed the Sierpinski's triangle fractal. Now it contains three recursive calls instead of two. <i>(Partner B)</i></p>
 
-Any project that doesn't compile will receive a 0.
+<b>Phase 3 Explanation</b>
+<p>+ Refractor Fractals: Each one of the fractals was transformed into a subclass of AbstractFractal.A polymorphic vector was created as an attribute to ofApp class. Additionally, the name of the fractal appears at the top-left corner on the screen. <i>(Partner A)</i></p>
+<p>+New Fractal: This new fractal is inspired by a tetra fractal, but we call it tetra circle. <i>(Partner A)</i></p>
+<p>+ Animation: Pressing <code>"Space bar"</code> will activate the animation by settting the recursion level to 1.Then it will increase the levels of recursion of the fractal level by level slowly until it completes the fractal. You can cancel the animation by pressing the <code>"Space bar"</code> again.<i>(Partner A)</i></p>
 
-If a partner has no commits in the repositories, he will receive a 0.
+<b>Bonus</b>
+<p>+ New fractal: Press <code>"7"</code> to acces the square fractal.  <i>(Partner B)</i></p>
 
-## Student Notes
-If you have any bonus specs or any details the TA's should know, you should include it here as well.
+
+by:
+<p>Diego A. Pérez Gandarillas </p>
+</p>Institutional Email: diego.perez16@upr.edu </p>
+<p>Glorián M. Serrano Ortiz  </p>
+</p>Institutional Email: glorian.serrano1@upr.edu </p>
