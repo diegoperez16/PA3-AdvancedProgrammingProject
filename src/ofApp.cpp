@@ -11,6 +11,7 @@ void ofApp::setup() {
     f = new Fern("FERN", 1,20);
     tetra = new Tetra("TRETRA CIRCLE", 1, 10);
     snow = new SnowFlake("SNOWFLAKE",1,7);
+    square = new Square("SQUARE", 1, 10);
 
     fractals.push_back(circle);
     fractals.push_back(tree);
@@ -18,6 +19,7 @@ void ofApp::setup() {
     fractals.push_back(f);
     fractals.push_back(snow);
     fractals.push_back(tetra);
+    fractals.push_back(square);
     
 }
 
@@ -29,9 +31,6 @@ void ofApp::update() {
             if(i+1 == int(mode)-48){
                 fractals[i]->update();
             }
-            // else if(i+1 == 5 && mode == '6'){
-            //     fractals[i]->update();
-            // }
         }
         
     }
@@ -68,7 +67,7 @@ void ofApp::draw() {
 
 void ofApp::keyPressed(int key) {
 
-    if (key >= '1' && key <= '6'){
+    if (key >= '1' && key <= '7'){
         mode = key;}
     
     else if (key == OF_KEY_F11)
@@ -77,68 +76,23 @@ void ofApp::keyPressed(int key) {
         ofSetFullscreen(false);
 
     if(key== OF_KEY_RIGHT){
-        if(mode == '1')
-        {
-            if(circle->getLevel() < circle->getMAX()){
-                circle->setLevel(circle->getLevel() + 1);
+
+        for(int i = 0; i<fractals.size(); i++){
+            if(i+1 == int(mode)-48){
+                if(fractals[i]->getLevel() < fractals[i]->getMAX())
+                    fractals[i]->setLevel(fractals[i]->getLevel() + 1);
             }
-        }
-        
-        else if(mode == '2'){
-            if(tree->getLevel() < tree->getMAX()){
-                tree->setLevel(tree->getLevel() + 1);
-            }
-        }
-        else if(mode== '3'){
-            if(t->getLevel() < t->getMAX()){
-                t->setLevel(t->getLevel() + 1);
-            }
-        }
-        else if(mode == '4'){
-            if(f->getLevel() < f->getMAX()){
-                f->setLevel(f->getLevel() + 1);
-            }
-        }
-        if(mode == '5'){
-            if(snow->getLevel() < snow->getMAX()){
-                
-            snow->setLevel(snow->getLevel() + 1);
-            }
-        }
-        else if(mode == '6'){
-            if(tetra->getLevel() < tetra->getMAX()){
-                tetra->setLevel(tetra->getLevel() + 1);
-            }
-        }}
+        }   
+
+    }
     if(key== OF_KEY_LEFT){
-        if(mode == '1'){
-            if(circle->getLevel() > 1){
-                circle->setLevel(circle->getLevel() - 1);
+
+        for(int i = 0; i<fractals.size(); i++){
+            if(i+1 == int(mode)-48){
+                if(fractals[i]->getLevel() > 1)
+                    fractals[i]->setLevel(fractals[i]->getLevel() - 1);
             }
-        }
-        else if(mode == '2'){
-            if(tree->getLevel() > 1){
-                tree->setLevel(tree->getLevel() - 1);
-            }
-        }
-        else if(mode == '3'){
-            if(t->getLevel() > 1){
-                t->setLevel(t->getLevel() - 1);
-            }
-        }
-        else if(mode == '4'){
-            if(f->getLevel() > 1){
-                f->setLevel(f->getLevel() - 1);
-            }
-        }
-        else if(mode == '5' && snow->getLevel() > 1){
-            snow->setLevel(snow->getLevel()-1);
-            }
-        else if(mode == '6'){
-            if(tetra->getLevel() > 1){
-                tetra->setLevel(tetra->getLevel() - 1);
-            }
-        }
+        }   
     }
     if(key == ' '){
         animation = !animation;

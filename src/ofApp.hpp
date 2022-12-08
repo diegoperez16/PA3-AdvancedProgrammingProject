@@ -7,28 +7,26 @@
 #include "Circle.hpp"
 #include "Tree.hpp"
 #include "SnowFlake.hpp"
+#include "Square.hpp"
+
 #include "ofMain.h"
 
 class ofApp : public ofBaseApp {
   private:
     bool animation;
-    // float animation_level = 1;
-    // int timer = 1;
-    int fpos = 0;
+    Square* square;
     TriangleSier* t; 
     Fern* f;
-    ofColor color;
     SnowFlake* snow;
     Circle* circle;
     Tree* tree;
     Tetra* tetra;
+
     char mode = '1';
-    float angle = 0;
     unsigned int fullscreen;
 
   public:
 
-    vector<ofColor> colores{ ofColor::red, ofColor::blue, ofColor:: green, ofColor:: yellow, ofColor::white, ofColor::pink, ofColor::orange, ofColor::aqua, ofColor::purple, ofColor::teal};
     vector<AbstractFractal*> fractals;
     
     void setup();
