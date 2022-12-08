@@ -82,19 +82,10 @@ void ofApp::draw() {
     } break;
     case '6': {
 
-
-        float length = 0.31 * ofGetHeight();
-        drawMode2(ofGetWidth() / 2, ofGetHeight() - 20, level, length, 1.5 * PI, 0);
-        drawMode2((ofGetWidth() / 2) + 400, ofGetHeight() - 20, level, length/4, 1.5 * PI, 0);
-        drawMode2((ofGetWidth() / 2) - 400, ofGetHeight() - 20, level, length/4, 1.5 * PI, 0);
         //new fractal: 
-        // float size = 0.88 * ofGetHeight();
-        // drawMode6((ofGetWidth() - size) / 2, ofGetHeight() / 2 - 0.4 * size, size, level, 0);
-
-        //float length = 0.31 * ofGetHeight();
-        //drawMode6(ofGetWidth() / 2, ofGetHeight() - 20, level, length, 10);
-        // drawMode6((ofGetWidth() / 2) + 400, ofGetHeight() - 20, level, length/4, 0);
-        // drawMode6((ofGetWidth() / 2) - 400, ofGetHeight() - 20, level, length/4, 0);
+        //Center
+        drawMode6(ofGetWidth() / 2, ofGetHeight() / 2,ofGetHeight() * 0.5 / 2.0 , level, 0);
+        
     } break; 
     }
 }
@@ -181,6 +172,7 @@ void ofApp::drawMode3(float x, float y, float size, int n, int max) {
 
     drawMode3(x, y, size / 2, n - 1, max +1);
     drawMode3((a.x + b.x) / 2, (a.y + b.y) / 2, size / 2, n - 1, max+1);
+    drawMode3((a.x + c.x) / 2, (a.y + c.y) / 2, size / 2, n - 1, max+1);
 }
 
 void ofApp::drawMode4(float x, float y, float n, int max) {
@@ -219,14 +211,10 @@ void ofApp::drawMode4(float x, float y, float n, int max) {
         drawMode4(-0.15 * x + 0.28 * y, 0.26 * x + 0.24 * y + 0.44, n - 1,max);
 }
 
-//Draws the sierpinski carpet
-void ofApp::drawMode6(float x, float y, int n, float length, float rad, int max) {
-   /* if (n == 0) return;
+//Draws the new fractal 
+void ofApp::drawMode6(float x, float y, float length, int n, int max) {
+    if (n == 0) return;
 
-    // float x2 = x + length * sin(rad);
-    // float y2 = y + length * cos(rad);
-
-    
     if(max < colores.size()){
         ofSetColor(colores[max]);
     }
@@ -234,66 +222,18 @@ void ofApp::drawMode6(float x, float y, int n, float length, float rad, int max)
         max = 0;
         ofSetColor(colores[max]);
     }
-    ofDrawRectangle(x - size, y -size, x + size, y + size);
+    
+    ofDrawRectangle(x - length, y - length, length * 2, length * 2);
     ofSetColor(ofColor::white);
     
-    if (n > 0){
-        drawMode6(x - size, y - size, size /2, n - 1, max + 1);
-        drawMode6(x + size, y - size, size /2, n - 1, max + 1);
-        drawMode6(x + size, y + size, size /2, n - 1, max + 1);
-        drawMode6(x - size, y + size, size /2, n - 1, max + 1);
-    }
-    
-    // if (n == 0) {
-    //     return;
-    // }
-
-    // ofPoint a(x, y);
-    // ofPoint b(x + size, y);
-    // ofPoint c(x, y + size); 
-    // ofPoint d( x + size, y +size); 
-    // // ofPoint c(x + size / 2, y + ((sqrt(3) * size) / 2));
-
-    
-    // // if(max < colores.size()){
-    // //     ofSetColor(colores[max]);
-    // // }
-    // // else{
-    // //     max = 0;
-    // //     ofSetColor(colores[max]);
-    // // }
-    // ofDrawRectangle(x,y,size,size);
-    // ofSetColor(ofColor::white);
-
-    // drawMode6(x + size/3, y + size/3, size/3, n - 1, max +1);*/
-
-     if (n == 0) return;
-
-    float x2 = x + length * cos(rad);
-    float y2 = y + length * sin(rad);
-
-    // float x3 = x + length * cos(rad);
-    // float y3 = y + length * sin(rad);
-
-    
-     if(max < colores.size()){
-        ofSetColor(colores[max]);
-    }
-    else{
-        max = 0;
-        ofSetColor(colores[max]);
-    }
-    ofDrawLine(x, y, x2, y2);
-    ofSetColor(ofColor::white);
-
-    // ofDrawLine(x + 600, y + 150, x3 + 600 , y3 + 150);
-
-    drawMode2(x2, y2, n - 1, 0.7 * length, rad + 0.2 * PI, max + 1);
-    drawMode2(x2, y2, n - 1,  0.7 * length, rad - 0.2 * PI, max + 1);
-
-    // drawMode2(x3 + 600, y3 + 150, n - 1, (0.7 * length)/2, (rad + 0.2 * PI)/2);
-    // drawMode2(x3 + 600, y3  + 150, n - 1,  (0.7* length)/2, (rad - 0.2 * PI)/2);
-    
+    //Left Corner
+    drawMode6(x - length, y - length, length /2, n - 1, max + 1);
+    //Right Corner 
+    drawMode6(x + length, y - length, length /2, n - 1, max + 1);
+    //Left Corner down 
+    drawMode6(x - length, y + length, length /2, n - 1, max + 1);
+    //Right Corner down 
+    drawMode6(x + length, y + length, length /2, n - 1, max + 1);
 }
 
 //--------------------------------------------------------------
