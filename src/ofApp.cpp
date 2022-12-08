@@ -85,28 +85,28 @@ void ofApp::keyPressed(int key) {
         }
         
         else if(mode == '2'){
-            if(tree->getLevel() < 15){
+            if(tree->getLevel() < tree->getMAX()){
                 tree->setLevel(tree->getLevel() + 1);
             }
         }
         else if(mode== '3'){
-            if(t->getLevel() < 10){
+            if(t->getLevel() < t->getMAX()){
                 t->setLevel(t->getLevel() + 1);
             }
         }
         else if(mode == '4'){
-            if(f->getLevel() < 1500){
+            if(f->getLevel() < f->getMAX()){
                 f->setLevel(f->getLevel() + 1);
             }
         }
         if(mode == '5'){
-            if(snow->getLevel() < 8){
+            if(snow->getLevel() < snow->getMAX()){
                 
             snow->setLevel(snow->getLevel() + 1);
             }
         }
         else if(mode == '6'){
-            if(tetra->getLevel() < 10){
+            if(tetra->getLevel() < tetra->getMAX()){
                 tetra->setLevel(tetra->getLevel() + 1);
             }
         }}
