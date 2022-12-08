@@ -4,12 +4,12 @@
 void ofApp::setup() {
     ofSetEscapeQuitsApp(false);
     fullscreen = 0;
-    circle_in_vector = false;
-    circle = new Circle("CIRCLE", (ofGetWidth() / 2), (ofGetHeight() / 2), 1, 0, 0.0);
-    tree = new Tree("TREE", ofGetWidth() / 2, ofGetHeight() - 20, 1, 0, 0,  0.0 );
-    t = new TriangleSier("TRIANGLE", 0.0, 0.0, 1, 0,0);
-    f = new Fern("FERN", 0.0,0.0,1,0);
-    tetra = new Tetra("TRETRA CIRCLE", 0.0,0.0, 1,0);
+    animation = false;
+    circle = new Circle("CIRCLE", (ofGetWidth() / 2), (ofGetHeight() / 2), 1, 5, 0.0);
+    tree = new Tree("TREE", ofGetWidth() / 2, ofGetHeight() - 20, 1, 15, 0,  0.0 );
+    t = new TriangleSier("TRIANGLE", 0.0, 0.0, 1, 10,0);
+    f = new Fern("FERN", 0.0,0.0,1,1500);
+    tetra = new Tetra("TRETRA CIRCLE", 0.0,0.0, 1, 10);
     snow = new SnowFlake();
 
     fractals.push_back(circle);
@@ -27,6 +27,47 @@ void ofApp::update() {
 
 //--------------------------------------------------------------
 void ofApp::draw() {
+
+    if(animation == true){
+            ofDrawBitmapString("ANIMATION: ON ", 50, 250);
+
+            int timer = 600;
+            while(timer <= 600 && timer > 0){
+                timer--;
+            }
+            if(timer == 0){
+                for(int i = 0; i<fractals.size(); i++){
+                    if(i+1 == int(mode)-48 && mode != '5'){
+                        if(fractals[i]->getLevel() < fractals[i]->getColorMAX()){
+                            fractals[i]->setLevel(fractals[i]->getLevel() + 1);}
+                        else if(fractals[i]->getLevel() == fractals[i]->getColorMAX()){
+                            fractals[i]->setLevel(fractals[i]->getLevel() - 1);
+                        }
+                    }
+                    else if(i+1 == 5 && mode == '6'){
+                        if(fractals[i]->getLevel() < fractals[i]->getColorMAX()){
+                        fractals[i]->setLevel(fractals[i]->getLevel() + 1);}
+                        else if(fractals[i]->getLevel() == fractals[i]->getColorMAX()){
+                            fractals[i]->setLevel(fractals[i]->getLevel() - 1);
+                        }
+                    }
+                }
+                timer = 30;
+            }
+        }
+    else if(animation == false){
+        for(int i = 0; i<fractals.size(); i++){
+                    if(i+1 == int(mode)-48 && mode != '5'){
+                            fractals[i]->setLevel(fractals[i]->getLevel());
+                    }
+                    else if(i+1 == 5 && mode == '6'){
+                        fractals[i]->setLevel(fractals[i]->getLevel());
+                    }
+                }
+    }
+    else{
+        ofDrawBitmapString("ANIMATION: OFF ", 50, 250);
+    }
 
     if(mode == '4'){
         ofBackgroundGradient(ofColor(ofColor::black), ofColor(0), OF_GRADIENT_BAR);
@@ -71,7 +112,6 @@ void ofApp::draw() {
             fractals[i]->draw();
         }
     }
-
 }
 
 //--------------------------------------------------------------
@@ -151,8 +191,9 @@ void ofApp::keyPressed(int key) {
             }
         }
     }
-    if(key == 'w'){
-        fpos++;
+    if(key == ' '){
+        animation = !animation;
+        
     }
 }
 

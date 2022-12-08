@@ -11,8 +11,8 @@
 
 class ofApp : public ofBaseApp {
   private:
-    bool circle_in_vector;
-    int level = 0;
+    bool animation;
+    // int timer = 30;
     int fpos = 0;
     TriangleSier* t; 
     Fern* f;

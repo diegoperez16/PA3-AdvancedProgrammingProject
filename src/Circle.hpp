@@ -21,6 +21,7 @@ class Circle: public AbstractFractal {
     float getY(){return this->y;}
 
     int getLevel(){return this->level;}
+    // int getMAXLevel(){return this->MAXLevel;}
     string getName(){return this->name;}
 
 };

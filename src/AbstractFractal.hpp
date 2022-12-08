@@ -9,7 +9,7 @@ class AbstractFractal: public Fractal{
         float y; 
         float angle = 0.0;
         int level;
-        int colorXLevel;
+        int MAXLevel;
         string name; 
 
 
@@ -22,7 +22,7 @@ class AbstractFractal: public Fractal{
             this->x = x1; 
             this->y = y1;
             this->level = level1; 
-            this->colorXLevel = dephColor;
+            this->MAXLevel = dephColor;
         };
 
         void draw () {}; 
@@ -40,7 +40,7 @@ class AbstractFractal: public Fractal{
         void  setY(float y2) { y = y2;}
         void  setLevel(int l) { level = l;}
 
-        int getColorL(){return colorXLevel;}
-        void  setColorL(int color){ colorXLevel = color;}
+        int getColorMAX(){return MAXLevel;}
+        // void  setColorL(int color){ colorXLevel = color;}
     
 }; 
