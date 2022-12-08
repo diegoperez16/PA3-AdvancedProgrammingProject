@@ -28,7 +28,8 @@ The purpose of this project is to help the student create practical programming 
 <p>+ Animation: Pressing <code>"Space bar"</code> will activate the animation by settting the recursion level to 1.Then it will increase the levels of recursion of the fractal level by level slowly until it completes the fractal. You can cancel the animation by pressing the <code>"Space bar"</code> again.<i>(Partner A)</i></p>
 
 <b>Bonus</b>
-<p>+ New fractal: Press <code>"7"</code> to acces the square fractal.  <i>(Partner B)</i></p>
+<p>+ New fractal: Press <code>"7"</code> to acces the square fractal. <i>(Partner B)</i></p>
+<p>+ New fractal: Press <code>"8"</code> to acces the ellipse fractal. <i>(Partner B)</i></p>
 
 
 by:
