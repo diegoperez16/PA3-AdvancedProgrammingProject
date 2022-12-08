@@ -12,7 +12,8 @@
 class ofApp : public ofBaseApp {
   private:
     bool animation;
-    // int timer = 30;
+    // float animation_level = 1;
+    // int timer = 1;
     int fpos = 0;
     TriangleSier* t; 
     Fern* f;

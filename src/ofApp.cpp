@@ -23,54 +23,22 @@ void ofApp::setup() {
 //--------------------------------------------------------------
 void ofApp::update() {
 
+    if(animation == true){
+        for(int i = 0; i<fractals.size(); i++){
+            if(i+1 == int(mode)-48 && mode != '5'){
+                fractals[i]->update();
+            }
+            else if(i+1 == 5 && mode == '6'){
+                fractals[i]->update();
+            }
+        }
+        
+    }
 }   
 
 //--------------------------------------------------------------
 void ofApp::draw() {
 
-    if(animation == true){
-            ofDrawBitmapString("ANIMATION: ON ", 50, 250);
-
-            int timer = 0;
-            while(timer <= 10000 && timer > 0){
-                timer++;
-            }
-            if(timer == 10000){
-                for(int i = 0; i<fractals.size(); i++){
-                    if(i+1 == int(mode)-48 && mode != '5'){
-                        if(fractals[i]->getLevel() < fractals[i]->getColorMAX()){
-                            fractals[i]->setLevel(fractals[i]->getLevel() + 1);}
-                        else if(fractals[i]->getLevel() == fractals[i]->getColorMAX()){
-                            for(int j = 0; j < fractals[i]->getColorMAX(); j++){
-                                fractals[i]->setLevel(fractals[i]->getLevel() - 1);
-                            }
-                            break;
-                        }
-                    }
-                    else if(i+1 == 5 && mode == '6'){
-                        if(fractals[i]->getLevel() < fractals[i]->getColorMAX()){
-                        fractals[i]->setLevel(fractals[i]->getLevel() + 1);}
-                        else if(fractals[i]->getLevel() == fractals[i]->getColorMAX()){
-                            fractals[i]->setLevel(fractals[i]->getLevel() - 1);
-                        }
-                    }
-                }
-                timer = 0;
-            }
-        }
-    else if(animation == false){
-        for(int i = 0; i<fractals.size(); i++){
-                    if(i+1 == int(mode)-48 && mode != '5'){
-                            fractals[i]->setLevel(fractals[i]->getLevel());
-                    }
-                    else if(i+1 == 5 && mode == '6'){
-                        fractals[i]->setLevel(fractals[i]->getLevel());
-                    }
-                }
-    }
-    else{
-        ofDrawBitmapString("ANIMATION: OFF ", 50, 250);
-    }
 
     if(mode == '4'){
         ofBackgroundGradient(ofColor(ofColor::black), ofColor(0), OF_GRADIENT_BAR);
@@ -107,6 +75,8 @@ void ofApp::draw() {
         if(i+1 == int(mode)-48 && mode != '5'){
             ofDrawBitmapString("NAME OF FRACTAL: " + ofToString(fractals[i]->getName()), 50, 100);
             ofDrawBitmapString("LEVEL OF FRACTALIZATION: " + ofToString(fractals[i]->getLevel()), 50, 150);
+            if(animation == true){
+                dynamic_cast<AbstractFractal*>(fractals[i])->setLevel(dynamic_cast<AbstractFractal*>(fractals[i])->getAnimationL());}
             fractals[i]->draw();
         }
         else if(i+1 == 5 && mode == '6'){
@@ -140,7 +110,7 @@ void ofApp::keyPressed(int key) {
         }
         if(mode == '1')
         {
-            if(circle->getLevel() < 5){
+            if(circle->getLevel() < circle->getColorMAX()){
                 circle->setLevel(circle->getLevel() + 1);
             }
         }

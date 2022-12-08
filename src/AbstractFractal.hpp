@@ -11,6 +11,8 @@ class AbstractFractal: public Fractal{
         int level;
         int MAXLevel;
         string name; 
+        float animation_level = 1;
+        int timer = 1;
 
 
 
@@ -26,12 +28,23 @@ class AbstractFractal: public Fractal{
             this->MAXLevel = dephColor;
         };
 
+        void update(){
+            animation_level += timer * 0.01;
+            if(animation_level  > MAXLevel +1){
+                timer = -1;
+            }
+            else if(animation_level < 1){
+                timer = 1;
+            }
+    
+        }
+
         void draw () {}; 
         string getName () {return name;} 
         int getLevel () {return level;} 
         float getX(){return x;}
         float getY(){return y;}
-
+        float getAnimationL(){return animation_level;}
         float getAngle(){return angle;}
 
         void  setAngle(float x3) {angle = x3;}
