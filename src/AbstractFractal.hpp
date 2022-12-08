@@ -52,7 +52,11 @@ class AbstractFractal: public Fractal{
 
         void  setX(float x2) {x = x2;}
         void  setY(float y2) { y = y2;}
-        void  setLevel(int l) { level = l;}
+        void  setLevel(int l) { 
+            if(l < 1){l = 1;
+            }
+            else if(l > MAXLevel){l = MAXLevel;}
+            level = l;}
 
         int getColorMAX(){return MAXLevel;}
         // void  setColorL(int color){ colorXLevel = color;}
