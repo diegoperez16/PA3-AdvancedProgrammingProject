@@ -18,7 +18,7 @@ The purpose of this project is to help the student create practical programming 
 
 <b>Phase 2 Explanation</b>
 <p>+ Fractal: Creation of an interface called Factal. <i>(Partner B)</i> </p>
-<p>+ Abstract Fractal: Creation of an abstract class called AbstractFractal. <i>(Partner B)</i></p>
+<p>+ Abstract Fractal: Creation of an abstract class called AbstractFractal. AbstractFractal does not have a method equal to 0, but interface method draw is not implemented making AbstractFractal abstract. <i>(Partner B)</i></p>
 <p>+ Edit Tree Fractal: Added two more Tree fractals that are half the size of the larger existing one. They will not touch. <i>(Partner A & B)</i></p>
 <p>+ Complete Sierpinski: Completed the Sierpinski's triangle fractal. Now it contains three recursive calls instead of two. <i>(Partner B)</i></p>
 
