@@ -7,6 +7,7 @@ class Fractal{
         virtual void draw () = 0;
         virtual string getName () = 0;
         virtual int getLevel ()= 0; 
+        virtual void update() = 0;
     
 };
 

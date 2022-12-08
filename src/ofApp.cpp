@@ -5,17 +5,18 @@ void ofApp::setup() {
     ofSetEscapeQuitsApp(false);
     fullscreen = 0;
     animation = false;
-    circle = new Circle("CIRCLE", (ofGetWidth() / 2), (ofGetHeight() / 2), 1, 5, 0.0);
-    tree = new Tree("TREE", ofGetWidth() / 2, ofGetHeight() - 20, 1, 15, 0,  0.0 );
-    t = new TriangleSier("TRIANGLE", 0.0, 0.0, 1, 10,0);
-    f = new Fern("FERN", 0.0,0.0,1,1500);
-    tetra = new Tetra("TRETRA CIRCLE", 0.0,0.0, 1, 10);
-    snow = new SnowFlake();
+    circle = new Circle("CIRCLE",  1, 5);
+    tree = new Tree("TREE", 1, 15 );
+    t = new TriangleSier("TRIANGLE", 1, 10);
+    f = new Fern("FERN", 1,20);
+    tetra = new Tetra("TRETRA CIRCLE", 1, 10);
+    snow = new SnowFlake("SNOWFLAKE",1,7);
 
     fractals.push_back(circle);
     fractals.push_back(tree);
     fractals.push_back(t);
     fractals.push_back(f);
+    fractals.push_back(snow);
     fractals.push_back(tetra);
     
 }
@@ -25,12 +26,12 @@ void ofApp::update() {
 
     if(animation == true){
         for(int i = 0; i<fractals.size(); i++){
-            if(i+1 == int(mode)-48 && mode != '5'){
+            if(i+1 == int(mode)-48){
                 fractals[i]->update();
             }
-            else if(i+1 == 5 && mode == '6'){
-                fractals[i]->update();
-            }
+            // else if(i+1 == 5 && mode == '6'){
+            //     fractals[i]->update();
+            // }
         }
         
     }
@@ -49,39 +50,14 @@ void ofApp::draw() {
     
 
 
-    if(mode == '5'){
-
-        // Koch 
-
-        ofDrawBitmapString("NAME OF FRACTAL: SNOWFLAKE", 50, 100);
-        ofDrawBitmapString("LEVEL OF FRACTALIZATION: " + ofToString(snow->getSnowL()), 50, 150);
-
-
-        float size = 0.74 * ofGetHeight();
-
-        glm::vec2 p1 = {(ofGetWidth() - size) / 2, (ofGetHeight() - size * sin(PI / 3)) / 2 + 0.15 * size};
-        glm::vec2 p2 = {(ofGetWidth() + size) / 2, (ofGetHeight() - size * sin(PI / 3)) / 2 + 0.15 * size};
-        glm::vec2 p3 = {ofGetWidth() / 2, (ofGetHeight() + size * sin(PI / 3)) / 2 + 0.15 * size};
-
-
-        snow->drawICE(snow->getSnowL(), new SnowFlake(p1, p2));   
-        snow->drawICE(snow->getSnowL(), new SnowFlake(p2, p3));
-        snow->drawICE(snow->getSnowL(), new SnowFlake(p3, p1));}
-    
-    // ofDrawBitmapString("NAME OF FRACTAL IN VECTOR : " + ofToString(fractals[fpos]->getName()), 50, 300);
-    
     ofNoFill();
     for(int i = 0; i<fractals.size(); i++){
-        if(i+1 == int(mode)-48 && mode != '5'){
+        if(i+1 == int(mode)-48){
             ofDrawBitmapString("NAME OF FRACTAL: " + ofToString(fractals[i]->getName()), 50, 100);
             ofDrawBitmapString("LEVEL OF FRACTALIZATION: " + ofToString(fractals[i]->getLevel()), 50, 150);
             if(animation == true){
                 dynamic_cast<AbstractFractal*>(fractals[i])->setLevel(dynamic_cast<AbstractFractal*>(fractals[i])->getAnimationL());}
-            fractals[i]->draw();
-        }
-        else if(i+1 == 5 && mode == '6'){
-            ofDrawBitmapString("NAME OF FRACTAL IN VECTOR : " + ofToString(fractals[i]->getName()), 50, 100);
-            ofDrawBitmapString("LEVEL OF FRACTALIZATION: " + ofToString(fractals[i]->getLevel()), 50, 150);
+            
             fractals[i]->draw();
         }
     }
@@ -89,7 +65,6 @@ void ofApp::draw() {
 
 //--------------------------------------------------------------
 
-//PONER ESTO MAS LINDO:
 
 void ofApp::keyPressed(int key) {
 
@@ -102,23 +77,13 @@ void ofApp::keyPressed(int key) {
         ofSetFullscreen(false);
 
     if(key== OF_KEY_RIGHT){
-        if(mode == '5'){
-            if(snow->getSnowL() < 8){
-                
-            snow->setSnowL(snow->getSnowL() + 1);
-            }
-        }
         if(mode == '1')
         {
-            if(circle->getLevel() < circle->getColorMAX()){
+            if(circle->getLevel() < circle->getMAX()){
                 circle->setLevel(circle->getLevel() + 1);
             }
         }
-        else if(mode == '4'){
-            if(f->getLevel() < 1500){
-                f->setLevel(f->getLevel() + 1);
-            }
-        }
+        
         else if(mode == '2'){
             if(tree->getLevel() < 15){
                 tree->setLevel(tree->getLevel() + 1);
@@ -127,6 +92,17 @@ void ofApp::keyPressed(int key) {
         else if(mode== '3'){
             if(t->getLevel() < 10){
                 t->setLevel(t->getLevel() + 1);
+            }
+        }
+        else if(mode == '4'){
+            if(f->getLevel() < 1500){
+                f->setLevel(f->getLevel() + 1);
+            }
+        }
+        if(mode == '5'){
+            if(snow->getLevel() < 8){
+                
+            snow->setLevel(snow->getLevel() + 1);
             }
         }
         else if(mode == '6'){
@@ -155,8 +131,8 @@ void ofApp::keyPressed(int key) {
                 f->setLevel(f->getLevel() - 1);
             }
         }
-        else if(mode == '5' && snow->getSnowL() > 1){
-            snow->setSnowL(snow->getSnowL()-1);
+        else if(mode == '5' && snow->getLevel() > 1){
+            snow->setLevel(snow->getLevel()-1);
             }
         else if(mode == '6'){
             if(tetra->getLevel() > 1){
@@ -166,7 +142,6 @@ void ofApp::keyPressed(int key) {
     }
     if(key == ' '){
         animation = !animation;
-        
     }
 }
 

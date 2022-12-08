@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
+#include "AbstractFractal.hpp"
 #include <cmath>
 
 
@@ -11,28 +12,28 @@
  *
  */
 
-class SnowFlake {
+class SnowFlake : public AbstractFractal{
   private:
     glm::vec2 start;
     glm::vec2 end;
-    int snowL = 1;
 
   public:
    
-    SnowFlake();
-    SnowFlake(glm::vec2 start, glm::vec2 end);
+
+    SnowFlake(string name1, int level1, int depthColor) : AbstractFractal(name1,level1, depthColor){}
+    SnowFlake(glm::vec2 start, glm::vec2 end)  : AbstractFractal(){
+      this->start = start;
+      this->end = end;
+    }
 
     glm::vec2 getStart() const { return start; }
     glm::vec2 getEnd() const { return end; }
     void setStart(glm::vec2 start) { this->start = start; }
     void setEnd(glm::vec2 end) { this->end = end; }
 
-    int getSnowL() const {return snowL;}
-
-    void setSnowL(int snowL){ this->snowL = snowL;}
 
     void draw();
-    void drawICE(int n, SnowFlake *flake);
+    void drawFractal(int n, SnowFlake *flake);
 
     glm::vec2 getA();
     glm::vec2 getB();
